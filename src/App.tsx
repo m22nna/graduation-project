@@ -1,10 +1,9 @@
-import * as React from "react"
-import { Button } from "@/components/ui/button"
+import HomePage from "./pages/HomePage";
 
 export default function App() {
   return (
-    <div className="p-4">
-      <Button>Click me!</Button>
+    <div className="container">
+      <HomePage />
     </div>
   )
 }
