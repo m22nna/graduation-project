@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
+import OpenMapButton from "./ui/OpenMapButton";
 
 export default function SearchInputs() {
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
     const [swapClicked, setSwapClicked] = useState(false);
+
+    type Coordinates = {
+        lat: number;
+        lng: number;
+    };
+    const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 
     useEffect(() => {
         async function getPosition(): Promise<{ lat: number; lng: number }> {
@@ -25,7 +32,7 @@ export default function SearchInputs() {
                                     lat: pos.coords.latitude,
                                     lng: pos.coords.longitude,
                                 }),
-                            (err) => reject(err),
+                            (err) => reject(err)
                             // { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
                         );
                     }
@@ -33,6 +40,7 @@ export default function SearchInputs() {
             );
             console.log(position);
 
+            setCoordinates(position);
             return position;
         }
 
@@ -158,6 +166,8 @@ export default function SearchInputs() {
                                 </div>
                             </div>
                         </div>
+
+                        {coordinates && <OpenMapButton from={from} userCoords={coordinates} />}
                     </CardContent>
                 </Card>
             </div>
