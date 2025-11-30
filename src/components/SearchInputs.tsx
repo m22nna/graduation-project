@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
 
+
 export default function SearchInputs() {
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
@@ -163,4 +164,4 @@ export default function SearchInputs() {
             </div>
         </div>
     );
-}
+  }

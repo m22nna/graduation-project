@@ -49,6 +49,10 @@ function TransItem({ trans }: { trans: Trans }) {
         <span className="font-semibold text-gray-800 truncate">{trans.lastStation}</span>
       </div>
 
+
+
+
+
       <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-orange-400 to-green-400 opacity-70 rounded-b-xl"></div>
     </div>
   );

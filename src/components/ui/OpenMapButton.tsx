@@ -88,6 +88,9 @@ type Coordinates = {
 type OpenMapButtonProps = {
     from: string;
     userCoords: Coordinates;
+
+
+
 };
 
 export default function OpenMapButton({ from, userCoords }: OpenMapButtonProps) {
@@ -185,3 +188,5 @@ export default function OpenMapButton({ from, userCoords }: OpenMapButtonProps) 
         </button>
     );
 }
+
+ 
