@@ -23,7 +23,7 @@ export default function SearchInputs() {
     }
 
     let bestPosition: Coordinates | null = null;
-    let cityFetched = false; 
+    let cityFetched = false;
 
     const watchId = navigator.geolocation.watchPosition(
       (pos) => {
@@ -38,7 +38,6 @@ export default function SearchInputs() {
           console.log("New best position:", bestPosition);
         }
 
-        
         if (current.accuracy <= 10 && !cityFetched) {
           cityFetched = true;
           setCoordinates(current);
@@ -57,7 +56,6 @@ export default function SearchInputs() {
       }
     );
 
-    
     setTimeout(() => {
       navigator.geolocation.clearWatch(watchId);
       if (bestPosition && !cityFetched) {
@@ -88,10 +86,10 @@ export default function SearchInputs() {
 
         setFrom(
           data.address.road ||
-          data.address.suburb ||
-          data.address.town ||
-          data.address.city ||
-          ""
+            data.address.suburb ||
+            data.address.town ||
+            data.address.city ||
+            ""
         );
       } catch (error) {
         console.error("Error fetching city:", error);
@@ -116,15 +114,21 @@ export default function SearchInputs() {
               {/* FROM */}
               <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
                 <span className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
-                <div className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
+                <div
+                  className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
                              transition-all duration-300 w-full
                              hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500">
-                  <span className="text-gray-600 font-medium whitespace-nowrap">From</span>
+                             focus-within:scale-105 focus-within:border-green-500"
+                >
+                  <span className="text-gray-600 font-medium whitespace-nowrap">
+                    From
+                  </span>
                   <div className="h-6 w-px bg-gray-300" />
                   <Input
                     value={from}
-                    onChange={(e) => setFrom(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFrom(e.target.value)
+                    }
                     placeholder="Enter your location"
                     className="flex-1 bg-transparent text-base md:text-lg font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
                   />
@@ -146,15 +150,21 @@ export default function SearchInputs() {
               {/* TO */}
               <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
                 <span className="w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
-                <div className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
+                <div
+                  className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
                              transition-all duration-300 w-full
                              hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500">
-                  <span className="text-gray-600 font-medium whitespace-nowrap">To</span>
+                             focus-within:scale-105 focus-within:border-green-500"
+                >
+                  <span className="text-gray-600 font-medium whitespace-nowrap">
+                    To
+                  </span>
                   <div className="h-6 w-px bg-gray-300" />
                   <Input
                     value={to}
-                    onChange={(e) => setTo(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setTo(e.target.value)
+                    }
                     placeholder="Enter your destination"
                     className="flex-1 bg-transparent text-base md:text-lg font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
                   />
