@@ -223,6 +223,9 @@ const routesData = [
 ];
 
 function RoutesTable() {
+   //  const [routes, setRoutes] = useState<RouteData[]>(routesData);
+    //const [loading, setLoading] = useState(false);
+
     const [routes] = useState<RouteData[]>(routesData);
     const [loading] = useState(false);
 
