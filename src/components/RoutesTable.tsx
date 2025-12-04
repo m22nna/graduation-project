@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import {
     Table,
     TableBody,
@@ -223,8 +223,8 @@ const routesData = [
 ];
 
 function RoutesTable() {
-    const [routes, setRoutes] = useState<RouteData[]>(routesData);
-    const [loading, setLoading] = useState(false);
+    const [routes] = useState<RouteData[]>(routesData);
+    const [loading] = useState(false);
 
     // useEffect(() => {
     //     const fetchRoutes = async () => {
