@@ -1,5 +1,4 @@
 import AllContainer from "@/components/AllContainer";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 function HomePage() {
@@ -13,9 +12,6 @@ function HomePage() {
             <main>
                 <AllContainer />
             </main>
-            <footer>
-                <Footer />
-            </footer>
         </div>
     );
 }
