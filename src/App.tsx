@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import RoutesQA from "./pages/RoutesQA";
 import AppLayout from "./components/AppLayout";
 import Overview from "./pages/Overview";
+import Contact from "./components/Contact";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "/routesqa",
                 element: <RoutesQA />,
+            },
+            {
+                path: "/contact",
+                element: <Contact />,
             },
         ],
     },
