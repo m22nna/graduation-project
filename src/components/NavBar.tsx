@@ -5,6 +5,16 @@ import { useState } from "react";
 const NavBar: React.FC = () => {
     const [open, setOpen] = useState(false);
 
+    // FINAL unified styles for all links
+    const linkClasses = (isActive: boolean) =>
+        isActive
+            ? "inline-block text-orange-400 border-b-2 border-orange-400 pb-[2px] " +
+              "hover:text-orange-300 hover:border-orange-300 " +
+              "no-underline visited:text-orange-400 transition-all"
+            : "inline-block text-white pb-[2px] " +
+              "hover:text-orange-300 hover:border-b-2 hover:border-orange-300 " +
+              "hover:no-underline transition-all";
+
     return (
         <>
             {/* NAV */}
@@ -21,58 +31,54 @@ const NavBar: React.FC = () => {
                     </NavLink>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden md:flex gap-6 lg:gap-8 text-white font-semibold text-base lg:text-lg">
+                    <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
-                            <NavLink 
-                                to="/routesqa" 
-                                className="hover:text-orange-300 transition-colors duration-200"
-                            >
+                            <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+                                Home
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to="/routesqa" className={({ isActive }) => linkClasses(isActive)}>
                                 Our Routes
                             </NavLink>
                         </li>
+
                         <li>
-                            <NavLink 
-                                to="/overview" 
-                                className="hover:text-orange-300 transition-colors duration-200"
-                            >
+                            <NavLink to="/overview" className={({ isActive }) => linkClasses(isActive)}>
                                 Overview
                             </NavLink>
                         </li>
+
                         <li>
-                            <NavLink 
-                                to="/contact" 
-                                className="hover:text-orange-300 transition-colors duration-200"
-                            >
+                            <NavLink to="/contact" className={({ isActive }) => linkClasses(isActive)}>
                                 Contact Us
                             </NavLink>
                         </li>
                     </ul>
 
-                    {/* Hamburger/X Button */}
+                    {/* Hamburger Button */}
                     <button
                         className="md:hidden relative w-10 h-10 flex items-center justify-center z-50 bg-transparent border-0 outline-none"
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle menu"
                     >
                         <div className="w-6 h-5 relative">
-                            {/* Line 1 - Top */}
                             <span
-                                className={`absolute top-0 left-0 h-0.5 w-full bg-white rounded transform transition-all duration-300 ease-in-out ${
-                                    open ? "rotate-45 translate-y-2" : "rotate-0 translate-y-0"
+                                className={`absolute top-0 left-0 h-0.5 w-full bg-white rounded transform transition-all duration-300 ${
+                                    open ? "rotate-45 translate-y-2" : ""
                                 }`}
                             ></span>
 
-                            {/* Line 2 - Middle */}
                             <span
-                                className={`absolute top-1/2 left-0 h-0.5 w-full bg-white rounded -translate-y-1/2 transition-all duration-300 ease-in-out ${
-                                    open ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                                className={`absolute top-1/2 left-0 h-0.5 w-full bg-white rounded -translate-y-1/2 transition-all duration-300 ${
+                                    open ? "opacity-0 scale-0" : ""
                                 }`}
                             ></span>
 
-                            {/* Line 3 - Bottom */}
                             <span
-                                className={`absolute bottom-0 left-0 h-0.5 w-full bg-white rounded transform transition-all duration-300 ease-in-out ${
-                                    open ? "-rotate-45 -translate-y-2" : "rotate-0 translate-y-0"
+                                className={`absolute bottom-0 left-0 h-0.5 w-full bg-white rounded transform transition-all duration-300 ${
+                                    open ? "-rotate-45 -translate-y-2" : ""
                                 }`}
                             ></span>
                         </div>
@@ -83,12 +89,12 @@ const NavBar: React.FC = () => {
             {/* Overlay */}
             {open && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300"
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
                     onClick={() => setOpen(false)}
                 ></div>
             )}
 
-            {/* SIDEBAR with Gradient */}
+            {/* Sidebar */}
             <div
                 className={`fixed top-0 right-0 h-full w-64 sm:w-72 text-white p-6 sm:p-8 transition-transform duration-300 md:hidden z-50 shadow-2xl ${
                     open ? "translate-x-0" : "translate-x-full"
@@ -97,10 +103,10 @@ const NavBar: React.FC = () => {
                     backgroundImage: "linear-gradient(to bottom right, #60ba8b, #32915a, #217c47)"
                 }}
             >
-                {/* Close X Button */}
+                {/* Close Button */}
                 <button
                     onClick={() => setOpen(false)}
-                    className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-transparent hover:opacity-80 rounded transition-opacity duration-200"
+                    className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-transparent hover:opacity-80"
                     aria-label="Close menu"
                 >
                     <svg
@@ -116,30 +122,43 @@ const NavBar: React.FC = () => {
                     </svg>
                 </button>
 
+                {/* Sidebar Menu */}
                 <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
                     <li>
-                        <NavLink 
-                            to="/routesqa" 
+                        <NavLink
+                            to="/"
                             onClick={() => setOpen(false)}
-                            className="block hover:text-orange-300 transition-colors duration-200 py-2"
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/routesqa"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
                         >
                             Our Routes
                         </NavLink>
                     </li>
+
                     <li>
-                        <NavLink 
-                            to="/overview" 
+                        <NavLink
+                            to="/overview"
                             onClick={() => setOpen(false)}
-                            className="block hover:text-orange-300 transition-colors duration-200 py-2"
+                            className={({ isActive }) => linkClasses(isActive)}
                         >
                             Overview
                         </NavLink>
                     </li>
+
                     <li>
-                        <NavLink 
-                            to="/contact" 
+                        <NavLink
+                            to="/contact"
                             onClick={() => setOpen(false)}
-                            className="block hover:text-orange-300 transition-colors duration-200 py-2"
+                            className={({ isActive }) => linkClasses(isActive)}
                         >
                             Contact Us
                         </NavLink>
