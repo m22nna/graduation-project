@@ -15,7 +15,6 @@
 // export default RoutesQA;
 
 import RoutesTable from "@/components/RoutesTable";
-import Contact from "../components/Contact";
 
 function RoutesQA() {
   return (
@@ -24,11 +23,6 @@ function RoutesQA() {
       {/* جدول خطوط السير */}
       <div className="max-w-6xl mx-auto w-full">
         <RoutesTable />
-      </div>
-
-      {/* نموذج التواصل */}
-      <div className="max-w-4xl mx-auto w-full">
-        <Contact />
       </div>
 
     </div>
