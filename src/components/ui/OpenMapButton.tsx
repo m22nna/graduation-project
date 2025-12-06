@@ -96,12 +96,14 @@ type OpenMapButtonProps = {
     from: string;
     userCoords: Coordinates | null;
     disabled: boolean;
+    isLoading: boolean;
 };
 
 export default function OpenMapButton({
     from,
     userCoords,
     disabled,
+    isLoading
 }: OpenMapButtonProps) {
     // Haversine formula لحساب المسافة الدقيقة
     function haversineDistance(
@@ -232,7 +234,7 @@ export default function OpenMapButton({
             >
                 🔍
                 <span>
-                    {disabled === true ? (
+                    {isLoading === true ? (
                         <div className="flex gap-2">
                             <LoadingSpinner /> <p>Loading...</p>
                         </div>
@@ -256,7 +258,7 @@ export default function OpenMapButton({
     "
             >
                 <MapPin className="w-4 h-4 text-white" />
-                {disabled === true ? (
+                {isLoading === true ? (
                     <>
                         <LoadingSpinner /> <p>Loading...</p>
                     </>
