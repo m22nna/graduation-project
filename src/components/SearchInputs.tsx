@@ -9,6 +9,7 @@ export default function SearchInputs() {
     const [to, setTo] = useState("");
     const [swapClicked, setSwapClicked] = useState(false);
     const [disabled, setDisabled] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     type Coordinates = {
         lat: number;
@@ -100,6 +101,8 @@ export default function SearchInputs() {
                         data.address.town
                     } - ${data.address.city}`
                 );
+
+                setIsLoading(false);
             } catch (error) {
                 console.error("Error fetching city:", error);
             }
@@ -183,6 +186,7 @@ export default function SearchInputs() {
                             from={from}
                             userCoords={coordinates}
                             disabled={disabled}
+                            isLoading={isLoading}
                         />
 
                         <p className="text-xs text-red-500 px-2 text-right mt-6">
