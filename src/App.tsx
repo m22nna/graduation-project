@@ -8,20 +8,25 @@ import AppLayout from "./components/AppLayout";
 import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
 
+import "./App.css"
+
 const router = createBrowserRouter([
     {
         element: <AppLayout />, //root element
         // errorElement: <Error />,
 
         children: [
-            {
+
+             {
                 path: "/",
-                element: <HomePage />,
-            },
-            {
-                path: "/overview",
                 element: <Overview />,
             },
+            {
+                path: "/home",
+                element: <HomePage />,
+            },
+           
+
             {
                 path: "/routesqa",
                 element: <RoutesQA />,

@@ -72,7 +72,11 @@ export default function Contact() {
 
         {/* Title */}
         <div className="text-center space-y-2">
+
+          <h2 className="text-3xl font-bold " style={{color:"var(--main-internal-color)"}}>تواصل معنا</h2>
+
           <h2 className="text-3xl font-bold text-green-700">تواصل معنا</h2>
+
           <p className="text-gray-500">سيتم الرد عليك خلال 24 ساعة.</p>
         </div>
 
