@@ -7,13 +7,16 @@ import RoutesQA from "./pages/RoutesQA";
 import AppLayout from "./components/AppLayout";
 import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
+
 import "./App.css"
+
 const router = createBrowserRouter([
     {
         element: <AppLayout />, //root element
         // errorElement: <Error />,
 
         children: [
+
              {
                 path: "/",
                 element: <Overview />,
@@ -23,6 +26,7 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
            
+
             {
                 path: "/routesqa",
                 element: <RoutesQA />,

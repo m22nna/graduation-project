@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Logo from "../assets/main-logo.png";
+
 //import Home from "../pages/HomePage";
 import Overview from "../pages/Overview";
+
+import Home from "../pages/HomePage";
+
+
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -49,14 +54,21 @@ const App: React.FC = () => {
         />
 
         <motion.h1
+
           className="0 mt-4 text-2xl font-bold text-center" style={{color:"var(--main-color)"}}
+
+          // className="text-green-700 mt-4 text-2xl font-bold text-center"
+
           variants={titleVariants}
         >
           Tareeqy
         </motion.h1>
 
         <motion.h2
+
           className=" mt-2 text-xl opacity-80 text-center"style={{color:"var(--main-color)"}}
+  //  className="text-green-700 mt-2 text-xl opacity-80 text-center"
+
           variants={subtitleVariants}
         >
           طريقك أسهل معانا
@@ -65,7 +77,11 @@ const App: React.FC = () => {
     );
   }
 
+
   return <Overview/>
+
+  return <Home/>
+
 };
 
 export default App;

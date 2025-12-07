@@ -33,7 +33,9 @@ const NavBar: React.FC = () => {
                     {/* Desktop Menu */}
                     <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
+
                             <NavLink to="/home" className={({ isActive }) => linkClasses(isActive)}>
+
                                 Home
                             </NavLink>
                         </li>
@@ -45,7 +47,9 @@ const NavBar: React.FC = () => {
                         </li>
 
                         <li>
+
                             <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+
                                 Overview
                             </NavLink>
                         </li>
