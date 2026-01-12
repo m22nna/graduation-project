@@ -6,7 +6,7 @@ import Logo from "../assets/main-logo.png";
 //import Home from "../pages/HomePage";
 import Overview from "../pages/Overview";
 
-import Home from "../pages/HomePage";
+//import Home from "../pages/HomePage";
 
 
 const App: React.FC = () => {
@@ -80,7 +80,7 @@ const App: React.FC = () => {
 
   return <Overview/>
 
-  return <Home/>
+  // return <Home/>
 
 };
 
