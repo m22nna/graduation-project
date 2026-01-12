@@ -137,7 +137,7 @@ const NavBar: React.FC = () => {
 
                             Overview
 
-                             Overview
+                             {/* Overview */}
 
                         </NavLink>
                     </li>
