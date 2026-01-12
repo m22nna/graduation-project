@@ -134,7 +134,7 @@ const NavBar: React.FC = () => {
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-                            Home
+                            Overview
                         </NavLink>
                     </li>
 
@@ -150,11 +150,11 @@ const NavBar: React.FC = () => {
 
                     <li>
                         <NavLink
-                            to="/overview"
+                            to="/home"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-                            Overview
+                            Home
                         </NavLink>
                     </li>
 
