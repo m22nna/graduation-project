@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
     return (
         <>
             {/* NAV */}
-            <nav className="w-full bg-transparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3">
+            <nav className="w-full bg-transparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3 ">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
                     {/* Logo */}
@@ -33,7 +33,9 @@ const NavBar: React.FC = () => {
                     {/* Desktop Menu */}
                     <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
-                            <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+
+                            <NavLink to="/home" className={({ isActive }) => linkClasses(isActive)}>
+
                                 Home
                             </NavLink>
                         </li>
@@ -45,7 +47,9 @@ const NavBar: React.FC = () => {
                         </li>
 
                         <li>
-                            <NavLink to="/overview" className={({ isActive }) => linkClasses(isActive)}>
+
+                            <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+
                                 Overview
                             </NavLink>
                         </li>
@@ -130,7 +134,11 @@ const NavBar: React.FC = () => {
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-                            Home
+
+                            Overview
+
+                             {/* Overview */}
+
                         </NavLink>
                     </li>
 
@@ -146,11 +154,13 @@ const NavBar: React.FC = () => {
 
                     <li>
                         <NavLink
-                            to="/overview"
+                            to="/home"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-                            Overview
+
+                            Home
+
                         </NavLink>
                     </li>
 

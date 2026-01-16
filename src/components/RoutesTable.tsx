@@ -255,7 +255,11 @@ function RoutesTable() {
 
     return (
         <div className="bg-white rounded-xl shadow-lg mb-12">
-            <h2 className="text-2xl font-semibold text-green-700 text-center py-4">
+
+            <h2 className="text-2xl font-semibold  text-center py-4" style={{color:"var(--main-internal-color)"}}>
+
+           
+
                 خطوط السير المتاحة
             </h2>
 
