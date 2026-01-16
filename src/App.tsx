@@ -7,7 +7,8 @@ import RoutesQA from "./pages/RoutesQA";
 import AppLayout from "./components/AppLayout";
 import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
-
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import "./App.css"
 
 const router = createBrowserRouter([
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact />,
+            },
+            {
+                path: "/register",
+                element: <Register />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
             },
         ],
     },

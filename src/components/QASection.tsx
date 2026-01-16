@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 interface FAQItemProps {
   q: string;
   a: string;
@@ -49,5 +48,6 @@ const FAQSection = () => {
     </div>
   );
 };
+
 
 export default FAQSection;

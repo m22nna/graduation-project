@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
     return (
         <>
             {/* NAV */}
-            <nav className="w-full bg-transparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3">
+            <nav className="w-full bg-transparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3 ">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
                     {/* Logo */}
@@ -137,7 +137,7 @@ const NavBar: React.FC = () => {
 
                             Overview
 
-                             Overview
+                             {/* Overview */}
 
                         </NavLink>
                     </li>
