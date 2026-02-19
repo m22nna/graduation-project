@@ -1,4 +1,4 @@
-
+# graduation-project
 
 # 📎 Project Name
 
@@ -68,7 +68,7 @@ The application combines modern front-end technologies with an ASP.NET backend a
 
 # 🌍 Project Vision
 
-Taree2y aims to simplify transportation discovery using AI-powered tools and accessibility features.
+Tareeqy aims to simplify transportation discovery using AI-powered tools and accessibility features.
 The project focuses on helping users quickly choose the best transportation method while ensuring inclusivity for all users.
 
 
@@ -79,4 +79,4 @@ The project focuses on helping users quickly choose the best transportation meth
 
 
 
-# graduation-project
+
