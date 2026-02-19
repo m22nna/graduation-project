@@ -2,8 +2,11 @@
 📎 Project Name
 🚍 Tareeky 
 Taree2y is a smart transportation web application that helps users discover available transportation options based on their location and needs.
+
 It is designed for people who are unsure which transportation method to take and want quick, intelligent guidance.
+
 The application combines modern front-end technologies with an ASP.NET backend and AI features to provide a fast, accessible, and smart transportation experience.
+
 
 ✨ Features
 🔍 Find available transportation options quickly
