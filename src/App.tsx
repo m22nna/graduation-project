@@ -7,6 +7,8 @@ import RoutesQA from "./pages/RoutesQA";
 import AppLayout from "./components/AppLayout";
 import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 import "./App.css";
 import { Toaster } from "react-hot-toast";
