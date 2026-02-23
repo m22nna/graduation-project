@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
 import OpenMapButton from "./ui/OpenMapButton";
+import { toast } from "react-hot-toast";
 
 export default function SearchInputs() {
     const [from, setFrom] = useState("");
@@ -28,7 +29,7 @@ export default function SearchInputs() {
 
     useEffect(() => {
         if (!navigator.geolocation) {
-            alert("Geolocation is not supported by this browser.");
+            toast.error("Geolocation is not supported by this browser.");
             return;
         }
 
@@ -57,7 +58,8 @@ export default function SearchInputs() {
             },
             (err) => {
                 console.error("Error getting location:", err);
-                alert("Failed to get location.");
+                setIsLoading(false);
+                toast.error("Failed to get location. Please enter it manually.", { id: "location-error" });
             },
             {
                 enableHighAccuracy: true,
