@@ -74,6 +74,7 @@
 
 import { MapPin } from "lucide-react";
 import LoadingSpinner from "../LoadingSpinner";
+import toast from "react-hot-toast";
 
 type NominatimResult = {
     lat: string;
@@ -130,46 +131,55 @@ export default function OpenMapButton({
     }
 
     // فلترة واختيار أقرب محطة
-    function getClosestResult(
-        results: NominatimResult[],
-        userCoords: Coordinates,
-        cityName?: string
-    ): NominatimResult | null {
-        if (!results || results.length === 0) return null;
-
-        // فلترة حسب المدينة أو الحي لو متاحة
-        const filtered = cityName
-            ? results.filter(
-                  (r) =>
-                      r.address?.city === cityName ||
-                      r.address?.town === cityName ||
-                      r.address?.suburb === cityName
-              )
-            : results;
-
-        const candidates = filtered.length > 0 ? filtered : results;
-
-        let closest = candidates[0];
-        let minDist = Infinity;
-
-        candidates.forEach((item) => {
-            const lat = parseFloat(item.lat);
-            const lon = parseFloat(item.lon);
-            const dist = haversineDistance(
-                userCoords.lat,
-                userCoords.lng,
-                lat,
-                lon
-            );
-
-            if (dist < minDist) {
-                minDist = dist;
-                closest = item;
-            }
-        });
-        
-        return closest;
+function getClosestResult(
+    results: NominatimResult[],
+    userCoords: Coordinates,
+    cityName?: string
+): NominatimResult | null {
+    // 1. لو مفيش نتائج رجعت من السيرفر أصلاً
+    if (!results || results.length === 0) {
+        toast.error('Sorry, no stations found for the specified location.');
+        return null;
     }
+
+    // 2. الفلترة الصارمة داخل المدينة (أو الحي)
+    const filtered = cityName
+        ? results.filter(
+              (r) =>
+                  r.address?.city === cityName ||
+                  r.address?.town === cityName ||
+                  r.address?.suburb === cityName
+          )
+        : results;
+
+    // 3. لو ملقاش نتائج "داخل المدينة" تحديداً، يطلع إيرور ويرجع null
+    if (filtered.length === 0) {
+        toast.error('Sorry, no stations found for the specified location.');
+        return null;
+    }
+
+    // 4. لو لقى نتائج، يبدأ يحسب الأقرب جغرافياً من النتائج المفلترة فقط
+    let closest = filtered[0];
+    let minDist = Infinity;
+
+    filtered.forEach((item) => {
+        const lat = parseFloat(item.lat);
+        const lon = parseFloat(item.lon);
+        const dist = haversineDistance(
+            userCoords.lat,
+            userCoords.lng,
+            lat,
+            lon
+        );
+
+        if (dist < minDist) {
+            minDist = dist;
+            closest = item;
+        }
+    });
+
+    return closest;
+}
 
     async function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
