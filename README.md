@@ -1,77 +1,82 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-=======
 # graduation-project
->>>>>>> a77574e3b8e8fe0baf04f1f5b203c4410cb0334f
+
+# 📎 Project Name
+
+
+# 🚍 Tareeqy 
+
+Tareeqy is a smart transportation web application that helps users discover available transportation options based on their location and needs.
+It is designed for people who are unsure which transportation method to take and want quick, intelligent guidance.
+The application combines modern front-end technologies with an ASP.NET backend and AI features to provide a fast, accessible, and smart transportation experience.
+
+
+# ✨ Features
+
+- 🔍 Find available transportation options quickly
+- 🎤 AI Voice Search for hands-free searching
+- 🤖 Smart Recommendation System suggesting the best routes
+- 🧏 Sign Language Support for better accessibility
+- 🔐 User authentication (Sign up / Login)
+- ⚡ Fast and user-friendly interface
+- 📱 Fully responsive design (mobile & desktop)
+
+
+# 🛠️ Tech Stack
+
+## Frontend
+- React
+- TypeScript
+- HTML
+- CSS
+
+## Backend
+- ASP.NET (Web API)
+- RESTful APIs
+- Database integration
+
+## AI Features
+- Voice Search
+- Recommendation System
+- Accessibility (Sign Language support)
+
+
+# 🔗 System Architecture
+
+- Frontend built with React + TypeScript
+- Backend built with ASP.NET Web API
+- Communication via REST APIs
+- AI modules integrated for search & recommendations
+
+
+# 🚀 Getting Started
+
+## Clone the repository:
+- git clone https://github.com/m22nna/graduation-project.git
+
+## Go to project folder:
+- cd PROJECT-NAME
+
+## Install frontend dependencies:
+- npm install
+ 
+## Run frontend:
+- npm run dev
+
+## Run backend (ASP.NET):
+- dotnet run
+
+
+# 🌍 Project Vision
+
+Tareeqy aims to simplify transportation discovery using AI-powered tools and accessibility features.
+The project focuses on helping users quickly choose the best transportation method while ensuring inclusivity for all users.
+
+
+# 👥 Team
+- Front-End: React & TypeScript
+- Back-End: ASP.NET
+- AI Integration: Voice Search & Recommendation System
+
+
+
+

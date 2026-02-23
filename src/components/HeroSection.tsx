@@ -1,7 +1,9 @@
 ////
 import React from "react";
 import BackGroundImage from "../assets/c007c5b09eb00ea20af7df549489d018.jpg";
+import { useNavigate } from "react-router-dom";
 const HeroSection: React.FC = () => {
+  const navigator =useNavigate();
   return (
     <div className="relative w-full h-[50vh] flex items-center justify-center text-white mb-12">
 
@@ -28,11 +30,11 @@ const HeroSection: React.FC = () => {
 
       
         <div className="flex items-center justify-center gap-4">
-          <button className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-internal-color)] rounded-full text-lg font-semibold" >
+          <button onClick={()=> navigator ("/login")} className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-hover-color)] rounded-full text-lg font-semibold" >
         تسجيل الدخول
           </button>
 
-          <button className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-internal-color)]  rounded-full text-lg font-semibold" >
+          <button onClick={()=> navigator("/register")} className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-hover-color)]  rounded-full text-lg font-semibold" >
            انشاء حساب
           </button>
         </div>

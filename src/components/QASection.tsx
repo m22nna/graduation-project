@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 interface FAQItemProps {
   q: string;
   a: string;
@@ -36,10 +35,10 @@ const FAQSection = () => {
   return (
     <div className="questions">
       <div className="title w-fit m-auto">
-        <h2 className="text-2xl font-bold mb-4 text-white" >اكتر الاسئلة الشائعة؟</h2>
-        <hr className=" text-base" style={{color:"var(--main-hover-color)"}}></hr>
+        <h2 className="text-2xl font-bold mb-2 text-white mt-3" >اكتر الاسئلة الشائعة؟</h2>
+        <hr className=" text-base mb-7" style={{color:"var(--main-hover-color)"}}></hr>
       </div>
-    <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8 mt-12">
+    <div className=" mx-auto bg-white shadow-lg rounded-2xl p-8 mt-15 container ">
       
 
       {faqData.map((item, i) => (
@@ -49,5 +48,6 @@ const FAQSection = () => {
     </div>
   );
 };
+
 
 export default FAQSection;
