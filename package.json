@@ -27,6 +27,7 @@
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.68.0",
     "react-hot-toast": "^2.6.0",
+    "react-media-recorder-2": "^1.6.23",
     "react-router-dom": "^7.10.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
