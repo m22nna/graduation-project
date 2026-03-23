@@ -1,9 +1,11 @@
 ////
-import React from "react";
+import React, { useContext } from "react";
 import BackGroundImage from "../assets/c007c5b09eb00ea20af7df549489d018.jpg";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "@/context/UserContext";
 const HeroSection: React.FC = () => {
   const navigator =useNavigate();
+  let {userToken} = useContext(UserContext);
   return (
     <div className="relative w-full h-[50vh] flex items-center justify-center text-white mb-12">
 
@@ -28,8 +30,20 @@ const HeroSection: React.FC = () => {
           اكتشف احسن وسيلة مواصلات واوصل لمشوارك فى اسرع وقت
         </p>
 
+      {userToken ? 
+       <div className=" my-8 ">
+
+        <button
+       
+          className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-hover-color)] rounded-full text-lg font-semibold"
+          onClick={() => navigator("/home")}
+        >
+          هتحرك ازاى؟
+        </button>
+      </div>
       
-        <div className="flex items-center justify-center gap-4">
+        :
+       <div className="flex items-center justify-center gap-4">
           <button onClick={()=> navigator ("/login")} className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-hover-color)] rounded-full text-lg font-semibold" >
         تسجيل الدخول
           </button>
@@ -37,7 +51,9 @@ const HeroSection: React.FC = () => {
           <button onClick={()=> navigator("/register")} className="px-6 py-3 bg-transparent border border-white hover:bg-[var(--main-hover-color)]  rounded-full text-lg font-semibold" >
            انشاء حساب
           </button>
-        </div>
+        </div> 
+      }
+        
       </div>
     </div>
   );

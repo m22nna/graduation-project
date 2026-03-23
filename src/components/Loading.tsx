@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import Logo from "../assets/main-logo.png";
+import Logo from "../assets/logo-nobg.png";
 
 //import Home from "../pages/HomePage";
 import Overview from "../pages/Overview";
@@ -49,13 +49,13 @@ const App: React.FC = () => {
           src={Logo}
           alt="logo"
           style={{ width: 250, height: 250 }}
-          className="rounded-full"
+          className="rounded-full bg-[var(--main-internal-color)] p-2"
           variants={logoVariants}
         />
 
         <motion.h1
 
-          className="0 mt-4 text-2xl font-bold text-center" style={{color:"var(--main-color)"}}
+          className="0 mt-4 text-2xl font-bold text-center" style={{color:"var(--main-internal-color)"}}
 
           // className="text-green-700 mt-4 text-2xl font-bold text-center"
 
@@ -66,7 +66,7 @@ const App: React.FC = () => {
 
         <motion.h2
 
-          className=" mt-2 text-xl opacity-80 text-center"style={{color:"var(--main-color)"}}
+          className=" mt-2 text-xl opacity-80 text-center"style={{color:"var(--main-internal-color)"}}
   //  className="text-green-700 mt-2 text-xl opacity-80 text-center"
 
           variants={subtitleVariants}

@@ -1,10 +1,12 @@
+import logo from "../assets/logo-nobg.png";
 function Footer() {
     return (
         <footer className="bg-[#0d0d0d] text-gray-400 py-10 mt-10 border-t border-gray-800">
             <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-                <h2 className="text-lg font-semibold text-green-400 tracking-wide">
+                {/* <h2 className="text-lg font-semibold text-green-400 tracking-wide">
                     Smart Transport
-                </h2>
+                </h2> */}
+                <img src={logo} className="w-32" />
 
                 <p className="text-sm text-gray-500 text-center md:text-left max-w-md leading-relaxed">
                     Your smart way to move around the city{" "}
@@ -33,7 +35,7 @@ function Footer() {
                 <p>
                     © {new Date().getFullYear()}{" "}
                     <span className="text-green-400 font-medium">
-                        Smart Transport
+                        Tareeqy
                     </span>
                     . All rights reserved.
                 </p>

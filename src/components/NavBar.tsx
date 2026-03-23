@@ -1,10 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo-nobg.png";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { UserContext } from "@/context/UserContext";
 const NavBar: React.FC = () => {
     const [open, setOpen] = useState(false);
-
+    let navigator = useNavigate();
+    let {userToken, setUserToken} = useContext(UserContext);
+    let {setUserId} = useContext(UserContext);
+function LogOut(){
+    localStorage.removeItem('userToken');
+    setUserToken(null);
+     localStorage.removeItem('userId');
+    setUserId(null);
+    navigator('/')
+}
     // FINAL unified styles for all links
     const linkClasses = (isActive: boolean) =>
         isActive
@@ -18,7 +27,7 @@ const NavBar: React.FC = () => {
     return (
         <>
             {/* NAV */}
-            <nav className="w-full bg-transparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3 ">
+            <nav className="w-full bg-trasparent backdrop-blur-sm border-b border-white/30 py-2 sm:py-3 md:py-3 ">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
                     {/* Logo */}
@@ -31,6 +40,7 @@ const NavBar: React.FC = () => {
                     </NavLink>
 
                     {/* Desktop Menu */}
+                    {userToken ?
                     <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
 
@@ -39,13 +49,11 @@ const NavBar: React.FC = () => {
                                 Home
                             </NavLink>
                         </li>
-
                         <li>
                             <NavLink to="/routesqa" className={({ isActive }) => linkClasses(isActive)}>
                                 Our Routes
                             </NavLink>
                         </li>
-
                         <li>
 
                             <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
@@ -53,13 +61,50 @@ const NavBar: React.FC = () => {
                                 Overview
                             </NavLink>
                         </li>
-
                         <li>
                             <NavLink to="/contact" className={({ isActive }) => linkClasses(isActive)}>
                                 Contact Us
                             </NavLink>
                         </li>
-                    </ul>
+                        <li>
+                            <NavLink to="/history" className={({ isActive }) => linkClasses(isActive)}>
+                                History
+                            </NavLink>
+                        </li>
+                        <li>
+                             <button type="submit" className="mx-auto block bg-[var(--main-hover-color)] text-white text-lg  py-1 px-4 rounded-xl  transition" onClick={()=> LogOut()}
+                >
+                  Log out
+                </button>
+                        </li>
+                    </ul> : <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
+                        <li>
+
+                            <NavLink to="/home" className={({ isActive }) => linkClasses(isActive)}>
+
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/routesqa" className={({ isActive }) => linkClasses(isActive)}>
+                                Our Routes
+                            </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+
+                                Overview
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact" className={({ isActive }) => linkClasses(isActive)}>
+                                Contact Us
+                            </NavLink>
+                        </li>
+                        
+                    </ul>}
+                    
 
                     {/* Hamburger Button */}
                     <button
@@ -127,7 +172,9 @@ const NavBar: React.FC = () => {
                 </button>
 
                 {/* Sidebar Menu */}
-                <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
+                 {userToken ?
+                  <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
+                   
                     <li>
                         <NavLink
                             to="/"
@@ -173,10 +220,79 @@ const NavBar: React.FC = () => {
                             Contact Us
                         </NavLink>
                     </li>
-                </ul>
+                    <li>
+                        <NavLink
+                            to="/history"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            History
+                        </NavLink>
+                    </li>
+                    <li>
+                         <button 
+                  type="submit"
+                  className="mx-auto block bg-[var(--main-hover-color)] text-white text-lg  py-1 px-4 rounded-xl transition"
+                  onClick = { ()=> LogOut()}
+                >
+                    
+                  Log out
+                </button>
+                    </li>
+                </ul>: <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
+                   
+                    <li>
+                        <NavLink
+                            to="/"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+
+                            Overview
+
+                             {/* Overview */}
+
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/routesqa"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            Our Routes
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/home"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+
+                            Home
+
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/contact"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            Contact Us
+                        </NavLink>
+                    </li>
+                    
+                </ul>}
+               
             </div>
         </>
     );
 };
 
 export default NavBar;
+

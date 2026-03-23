@@ -9,44 +9,120 @@ import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-
+import ForgetPassword from './pages/ForgetPaaword';
+import VerifyCode from './pages/VerifyCode';
+import ResetPassword from './pages/ResetPassword';
+//import ReactDOM from "react-dom/client";
+import History from './pages/History'
+import AuthLayout from "./components/AuthLayout";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-
+import UserContextProvider from "./context/UserContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 const router = createBrowserRouter([
-  {
-    element: <AppLayout />, //root element
-    // errorElement: <Error />,
+//  {
+//     element: <AppLayout />, //root element
+//     // errorElement: <Error />,
 
+//     children: [
+//       {
+//         path: "/",
+//         element: <Overview />,
+//       },
+//       {
+//         path: "/home",
+//         element: <HomePage />,
+//       },
+
+//       {
+//         path: "/routesqa",
+//         element: <RoutesQA />,
+//       },
+//       {
+//         path: "/contact",
+//         element: <Contact />,
+//       },
+//       {
+//                 path: "/register",
+//                 element: <Register />,
+//             },
+//             {
+//                 path: "/login",
+//                 element: <Login />,
+//             },
+//              {
+//                 path: "/forgetpassword",
+//                 element: <ForgetPassword/>,
+//             },
+//              {
+//                 path: "/verifycode",
+//                 element: <VerifyCode />,
+//             },
+//              {
+//                 path: "/resetpassword",
+//                 element: <ResetPassword />,
+//             },
+
+//     ],
+//   },
+// ]);
+ {
+    path: "/",
+    element: <AppLayout />,
     children: [
       {
-        path: "/",
+        index: true, // ⭐ دي أهم نقطة
         element: <Overview />,
       },
       {
-        path: "/home",
+        path: "home",
         element: <HomePage />,
       },
-
       {
-        path: "/routesqa",
+        path: "routesqa",
         element: <RoutesQA />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
       {
-                path: "/register",
-                element: <Register />,
-            },
-            {
-                path: "/login",
-                element: <Login />,
-            },
+        path: "history",
+        element: <History />,
+      },
+    ],
+  },
+
+  // 🟢 Auth Layout (من غير Navbar)
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+                 path: "/forgetpassword",
+                 element: <ForgetPassword/>,
+             },
+              {
+                 path: "/verifycode",
+                 element: <VerifyCode />,
+             },
+              {
+                 path: "/resetpassword",
+                 element: <ResetPassword />,
+             },
+
     ],
   },
 ]);
+
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -59,10 +135,16 @@ export default function App() {
   if (loading) return <Loading />;
   return (
     <>
-      <div className="container">
+    <UserContextProvider>
+      <GoogleOAuthProvider clientId="11202583079-lia5e3fp87knod8accrqlvnh7u7ldcl6.apps.googleusercontent.com">
+        <div className="container">
         {/* <Loading /> */}
         <RouterProvider router={router} />
       </div>
+      </GoogleOAuthProvider>
+      
+    </UserContextProvider>
+      
 
       <Toaster
         position="top-center"

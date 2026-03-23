@@ -49,9 +49,9 @@ const StatsSection = () => {
       
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Counter title="المستخدمين" endValue={1200} />
+        <Counter title="Feedback" endValue={1200} />
         <Counter title="الرحلات" endValue={1200} />
-        <Counter title="الوقت" endValue={150} />
+        <Counter title="المستخدمين" endValue={150} />
       </div>
     </div>
     </div>
