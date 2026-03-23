@@ -4,10 +4,10 @@ import QASection from "../components/QASection";
 
 import HeroSection from "../components/HeroSection";
 // import Home from "../pages/HomePage";
- import { useNavigate } from "react-router-dom";
+ //import { useNavigate } from "react-router-dom";
 
 function Overview() {
-     const navigator=useNavigate();
+     //const navigator=useNavigate();
     return (
         
         <>
