@@ -44,7 +44,7 @@ const StatsSection = () => {
 <h1 className="text-3xl font-bold mb-1 text-white" >احصائيات</h1>
 <hr className=" text-base" style={{color:"var(--main-hover-color)"}}></hr>
         </div>
-    <div className="py-20 px-5  rounded-2xl bg-white container">
+    <div className="py-20 px-5  rounded-2xl bg-white ">
      
       
 

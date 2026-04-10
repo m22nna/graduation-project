@@ -19,6 +19,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import UserContextProvider from "./context/UserContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Dashboard from "./pages/Dashboard";
 const router = createBrowserRouter([
 //  {
 //     element: <AppLayout />, //root element
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
         path: "history",
         element: <History />,
       },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
     ],
   },
 
@@ -139,8 +144,9 @@ export default function App() {
       <GoogleOAuthProvider clientId="11202583079-lia5e3fp87knod8accrqlvnh7u7ldcl6.apps.googleusercontent.com">
         <div className="container">
         {/* <Loading /> */}
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
       </div>
+       <RouterProvider router={router} />
       </GoogleOAuthProvider>
       
     </UserContextProvider>

@@ -1,19 +1,19 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo-nobg.png";
 import { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
 const NavBar: React.FC = () => {
     const [open, setOpen] = useState(false);
-    let navigator = useNavigate();
+    //let navigator = useNavigate();
     let {userToken, setUserToken} = useContext(UserContext);
-    let {setUserId} = useContext(UserContext);
-function LogOut(){
-    localStorage.removeItem('userToken');
-    setUserToken(null);
-     localStorage.removeItem('userId');
-    setUserId(null);
-    navigator('/')
-}
+    //let {setUserId} = useContext(UserContext);
+// function LogOut(){
+//     localStorage.removeItem('userToken');
+//     setUserToken(null);
+//      localStorage.removeItem('userId');
+//     setUserId(null);
+//     navigator('/')
+// }
     // FINAL unified styles for all links
     const linkClasses = (isActive: boolean) =>
         isActive
@@ -40,7 +40,7 @@ function LogOut(){
                     </NavLink>
 
                     {/* Desktop Menu */}
-                    {userToken ?
+                    {/* {userToken ?
                     <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
 
@@ -72,7 +72,7 @@ function LogOut(){
                             </NavLink>
                         </li>
                         <li>
-                             <button type="submit" className="mx-auto block bg-[var(--main-hover-color)] text-white text-lg  py-1 px-4 rounded-xl  transition" onClick={()=> LogOut()}
+                             <button type="submit" className="mx-auto block bg-[var(--main-hover-color)] text-white text-lg  py-1 px-4 rounded-xl  transition" onClick={()=> }
                 >
                   Log out
                 </button>
@@ -104,7 +104,38 @@ function LogOut(){
                         </li>
                         
                     </ul>}
+                     */}
+
+
+                    <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
+                        <li>
+
+                            <NavLink to="/home" className={({ isActive }) => linkClasses(isActive)}>
+
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/routesqa" className={({ isActive }) => linkClasses(isActive)}>
+                                Our Routes
+                            </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
+
+                                Overview
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact" className={({ isActive }) => linkClasses(isActive)}>
+                                Contact Us
+                            </NavLink>
+                        </li>                    
+                        
+                    </ul> 
                     
+
 
                     {/* Hamburger Button */}
                     <button
@@ -220,26 +251,9 @@ function LogOut(){
                             Contact Us
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink
-                            to="/history"
-                            onClick={() => setOpen(false)}
-                            className={({ isActive }) => linkClasses(isActive)}
-                        >
-                            History
-                        </NavLink>
-                    </li>
-                    <li>
-                         <button 
-                  type="submit"
-                  className="mx-auto block bg-[var(--main-hover-color)] text-white text-lg  py-1 px-4 rounded-xl transition"
-                  onClick = { ()=> LogOut()}
-                >
                     
-                  Log out
-                </button>
-                    </li>
-                </ul>: <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
+                </ul>: 
+                <ul className="flex flex-col gap-6 sm:gap-8 text-base sm:text-lg font-semibold mt-16 sm:mt-20">
                    
                     <li>
                         <NavLink
