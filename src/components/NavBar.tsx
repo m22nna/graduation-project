@@ -5,7 +5,8 @@ import { UserContext } from "@/context/UserContext";
 const NavBar: React.FC = () => {
     const [open, setOpen] = useState(false);
     //let navigator = useNavigate();
-    let {userToken, setUserToken} = useContext(UserContext);
+    //let {userToken, setUserToken} = useContext(UserContext);
+    let {userToken} = useContext(UserContext);
     //let {setUserId} = useContext(UserContext);
 // function LogOut(){
 //     localStorage.removeItem('userToken');
