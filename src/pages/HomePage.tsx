@@ -1,18 +1,19 @@
+import { useState } from "react";
 import AllContainer from "@/components/AllContainer";
 import Header from "@/components/Header";
-import { FoundRoutesProvider } from "@/context/foundRoutesContext";
+import type { SearchRouteParams } from "@/services/routesApi";
 
 function HomePage() {
+  const [searchParams, setSearchParams] = useState<SearchRouteParams | null>(null);
+
   return (
     <div className="header">
-      <FoundRoutesProvider>
-        <header>
-          <Header />
-        </header>
-        <main>
-          <AllContainer />
-        </main>
-      </FoundRoutesProvider>
+      <header>
+        <Header setSearchParams={setSearchParams} />
+      </header>
+      <main>
+        <AllContainer searchParams={searchParams} />
+      </main>
     </div>
   );
 }
