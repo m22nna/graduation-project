@@ -61,7 +61,13 @@
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7"
   },
-  "description": "<<<<<<< HEAD\r # React + TypeScript + Vite",
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "latest"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "description": "React + TypeScript + Vite",
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
