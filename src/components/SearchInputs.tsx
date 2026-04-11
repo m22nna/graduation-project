@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
 import OpenMapButton from "./ui/OpenMapButton";
 import { toast } from "react-hot-toast";
+import VoiceRecorder from "./VoiceRecorder";
 
 export default function SearchInputs() {
   const [from, setFrom] = useState("");
@@ -93,18 +94,15 @@ export default function SearchInputs() {
           },
         );
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch city data");
-        }
+        if (!res.ok) throw new Error("Failed to fetch city data");
 
         const data = await res.json();
         console.log("Reverse Geocode Data:", data);
-        console.log("Address object:", data.address);
 
         setFrom(
           `${
             data.address.road || data.address.suburb || data.address.town
-          } - ${data.address.city}`,
+          } - ${data.address.city || data.address.town || ""}`
         );
       } catch (error) {
         console.error("Error fetching city:", error);
@@ -124,82 +122,86 @@ export default function SearchInputs() {
   };
 
   return (
-    <div className="search-input flex justify-center items-center w-full mt-10 px-6">
-      <div className="w-full max-w-6xl">
-        <Card className="bg-white border border-gray-200 rounded-2xl transition-all duration-300">
-          <CardContent className="p-6 pb-0">
-            <div className="flex flex-col [@media(min-width:850px)]:flex-row items-center justify-center gap-5 md:gap-8">
-              {/* FROM */}
-              <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
-                <span className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
-                <div
-                  className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
-                             transition-all duration-300 w-full
-                             hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500"
-                >
-                  <span className="text-gray-600 font-medium whitespace-nowrap">
-                    From
-                  </span>
-                  <div className="h-6 w-px bg-gray-300" />
-                  <Input
-                    value={from}
-                    onChange={(e) => setFrom(e.target.value)}
-                    placeholder="Enter your location"
-                    className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
-                  />
-                </div>
-              </div>
+    <>
+      <div className="search-input flex justify-center items-center w-full mt-10 px-6">
+        <div className="w-full max-w-6xl">
+          <Card className="bg-white border border-gray-200 rounded-2xl transition-all duration-300">
+            <VoiceRecorder />
 
-              {/* Swap button */}
-              <button
-                onClick={handleSwap}
-                className={`bg-gray-100 hover:bg-gray-200 text-gray-700 p-3 rounded-full border border-gray-300 transition-all duration-300 
+            <CardContent className="p-6 pb-0">
+              <div className="flex flex-col [@media(min-width:850px)]:flex-row items-center justify-center gap-5 md:gap-8">
+                {/* FROM */}
+                <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
+                  <span className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
+                  <div
+                    className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
+                               transition-all duration-300 w-full
+                               hover:border-green-400 
+                               focus-within:scale-105 focus-within:border-green-500"
+                  >
+                    <span className="text-gray-600 font-medium whitespace-nowrap">
+                      From
+                    </span>
+                    <div className="h-6 w-px bg-gray-300" />
+                    <Input
+                      value={from}
+                      onChange={(e) => setFrom(e.target.value)}
+                      placeholder="Enter your location"
+                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
+                    />
+                  </div>
+                </div>
+
+                {/* Swap button */}
+                <button
+                  onClick={handleSwap}
+                  className={`bg-gray-100 hover:bg-gray-200 text-gray-700 p-3 rounded-full border border-gray-300 transition-all duration-300 
                 ${swapClicked ? "scale-110 border-green-500" : "scale-100"} 
                 hover:border-green-400 flex justify-center items-center`}
-                aria-label="Swap"
-              >
-                <ArrowLeftRight className="hidden [@media(min-width:850px)]:block w-5 h-5 text-green-600" />
-                <ArrowDownUp className="block [@media(min-width:850px)]:hidden w-5 h-5 text-green-600" />
-              </button>
-
-              {/* TO */}
-              <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
-                <span className="w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
-                <div
-                  className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
-                             transition-all duration-300 w-full
-                             hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500"
+                  aria-label="Swap"
                 >
-                  <span className="text-gray-600 font-medium whitespace-nowrap">
-                    To
-                  </span>
-                  <div className="h-6 w-px bg-gray-300" />
-                  <Input
-                    value={to}
-                    onChange={(e) => setTo(e.target.value)}
-                    placeholder="Enter your destination"
-                    className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
-                  />
+                  <ArrowLeftRight className="hidden [@media(min-width:850px)]:block w-5 h-5 text-green-600" />
+                  <ArrowDownUp className="block [@media(min-width:850px)]:hidden w-5 h-5 text-green-600" />
+                </button>
+
+                {/* TO */}
+                <div className="flex items-center gap-3 w-full [@media(min-width:850px)]:w-[45%]">
+                  <span className="w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
+                  <div
+                    className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
+                               transition-all duration-300 w-full
+                               hover:border-green-400 
+                               focus-within:scale-105 focus-within:border-green-500"
+                  >
+                    <span className="text-gray-600 font-medium whitespace-nowrap">
+                      To
+                    </span>
+                    <div className="h-6 w-px bg-gray-300" />
+                    <Input
+                      value={to}
+                      onChange={(e) => setTo(e.target.value)}
+                      placeholder="Enter your destination"
+                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <OpenMapButton
-              from={from}
-              to={to}
-              userCoords={coordinates}
-              disabled={disabled}
-              isLoading={isLoading}
-            />
+              <OpenMapButton
+                from={from}
+                to={to}
+                userCoords={coordinates}
+                disabled={disabled}
+                isLoading={isLoading}
+              />
 
-            <p className="text-xs text-red-500 px-2 text-right mt-6">
-              تنبيه: يجب كتابة اسم المدينة مع المحطة في البحث*
-            </p>
-          </CardContent>
-        </Card>
+              <p className="text-xs text-red-500 px-2 text-right mt-6">
+                تنبيه: يجب كتابة اسم المدينة مع المحطة في البحث*
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

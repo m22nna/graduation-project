@@ -38,7 +38,7 @@ const FAQSection = () => {
         <h2 className="text-2xl font-bold mb-2 text-white mt-3" >اكتر الاسئلة الشائعة؟</h2>
         <hr className=" text-base mb-7" style={{color:"var(--main-hover-color)"}}></hr>
       </div>
-    <div className=" mx-auto bg-white shadow-lg rounded-2xl p-8 mt-15 container ">
+    <div className=" mx-auto bg-white shadow-lg rounded-2xl p-8 mt-15  ">
       
 
       {faqData.map((item, i) => (

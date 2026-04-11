@@ -80,3 +80,6 @@ The project focuses on helping users quickly choose the best transportation meth
 
 
 
+## 👩‍💻 Author
+
+Developed by **Tareeqy team** 
