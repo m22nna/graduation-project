@@ -9,6 +9,8 @@ import Overview from "./pages/Overview";
 import Contact from "./components/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import "./App.css";
 import { Toaster } from "react-hot-toast";
@@ -37,16 +39,18 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-                path: "/register",
-                element: <Register />,
-            },
-            {
-                path: "/login",
-                element: <Login />,
-            },
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
     ],
   },
 ]);
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -58,7 +62,8 @@ export default function App() {
 
   if (loading) return <Loading />;
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <div className="container">
         {/* <Loading /> */}
         <RouterProvider router={router} />
@@ -84,6 +89,6 @@ export default function App() {
           },
         }}
       />
-    </>
+    </QueryClientProvider>
   );
 }
