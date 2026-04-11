@@ -1,161 +1,110 @@
-// import { MapPin } from "lucide-react";
-// import { useState } from "react";
-
-// // useEffect(function () {
-// //     async function getCoordsFromAddress(address = "محطة رمسيس") {
-// //         const res = await fetch(
-// //             `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-// //                 address
-// //             )}&format=json`
-// //         );
-// //         const data = await res.json();
-// //         setCoords(data);
-// //         console.log(data);
-// //     }
-
-// //     getCoordsFromAddress();
-// // }, []);
-
-// type NominatimResult = {
-//   lat: string;
-//   lon: string;
-//   display_name: string;
-// };
-
-// type OpenMapButtonProps = {
-//   from: string; // أو string | null حسب حالتك
-// };
-
-// export default function OpenMapButton({ from }: OpenMapButtonProps, coordinates) {
-//   const [coords, setCoords] = useState<NominatimResult[] | null>(null);
-
-//   async function handleClick(
-//     e: React.MouseEvent<HTMLButtonElement>,
-//     address: string = "محطة رمسيس"
-//   ): Promise<void> {
-//     e.preventDefault();
-
-//     if (!from) return;
-
-//     const res = await fetch(
-//       `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-//         address
-//       )}&format=json`
-//     );
-
-//     if (!res.ok) {
-//       console.error("Failed to fetch:", res.statusText);
-//       return;
-//     }
-
-//     const data: NominatimResult[] = await res.json();
-
-//     setCoords(data);
-//     console.log("Fetched coords:", data);
-//   }
-
-//   return (
-//     <button
-//       onClick={(e) => handleClick(e, from)}
-//       className="
-//         mt-10 w-fit flex items-center justify-center gap-2
-//         bg-green-600 hover:bg-green-700 active:bg-green-800
-//         text-white font-semibold
-//         px-4 py-2 rounded-xl
-//         shadow-md hover:shadow-lg
-//         transition-all duration-300 sm:text-base mx-auto text-xs
-//       "
-//     >
-//       <MapPin className="w-4 h-4 text-white" />
-//       <span>Open in Google Maps</span>
-//     </button>
-//   );
-// }
-
 import { MapPin } from "lucide-react";
 import LoadingSpinner from "../LoadingSpinner";
 import toast from "react-hot-toast";
+import { useRoutes } from "../../features/useRoutes";
+import { reverseGeocoding } from "../../services/reverseGeocoding";
+import { useState } from "react";
+import { useRoutesContext } from "@/context/foundRoutesContext";
 
 type NominatimResult = {
-    lat: string;
-    lon: string;
-    display_name: string;
-    address?: {
-        city?: string;
-        town?: string;
-        suburb?: string;
-    };
+  lat: string;
+  lon: string;
+  display_name: string;
+  address?: {
+    city?: string;
+    town?: string;
+    suburb?: string;
+  };
 };
 
 type Coordinates = {
-    lat: number;
-    lng: number;
-    accuracy?: number;
+  lat: number;
+  lng: number;
+  accuracy?: number;
 };
 
 type OpenMapButtonProps = {
-    from: string;
-    userCoords: Coordinates | null;
-    disabled: boolean;
-    isLoading: boolean;
+  from: string;
+  to: string;
+  userCoords: Coordinates | null;
+  disabled: boolean;
+  isLoading: boolean;
 };
 
+interface SearchRouteParams {
+  userLocation: string;
+  userLatitude: number;
+  userLongitude: number;
+  destination: string;
+  destinationLatitude: number;
+  destinationLongitude: number;
+}
+
 export default function OpenMapButton({
-    from,
-    userCoords,
-    disabled,
-    isLoading
+  from,
+  to,
+  userCoords,
+  disabled,
+  isLoading,
 }: OpenMapButtonProps) {
-    // Haversine formula لحساب المسافة الدقيقة
-    function haversineDistance(
-        lat1: number,
-        lon1: number,
-        lat2: number,
-        lon2: number
-    ) {
-        const R = 6371; // نصف قطر الأرض بالكيلومتر
-        const toRad = (x: number) => (x * Math.PI) / 180;
+  const [searchParams, setSearchParams] = useState<SearchRouteParams | null>(
+    null,
+  );
+  const { routes, isLoading: isSearching, error } = useRoutes(searchParams);
+  const { setFinalRoutes } = useRoutesContext();
+  if (routes) setFinalRoutes(routes.data);
+  if (error) toast.error("Error fetching routes: " + error.message);
 
-        const dLat = toRad(lat2 - lat1);
-        const dLon = toRad(lon2 - lon1);
+  const loading = isLoading || isSearching || disabled;
 
-        const a =
-            Math.sin(dLat / 2) ** 2 +
-            Math.cos(toRad(lat1)) *
-                Math.cos(toRad(lat2)) *
-                Math.sin(dLon / 2) ** 2;
+  // Haversine formula لحساب المسافة الدقيقة
+  function haversineDistance(
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number,
+  ) {
+    const R = 6371; // نصف قطر الأرض بالكيلومتر
+    const toRad = (x: number) => (x * Math.PI) / 180;
 
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
 
-        return R * c; // المسافة بالكيلومتر
-    }
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
 
-    // فلترة واختيار أقرب محطة
-function getClosestResult(
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // المسافة بالكيلومتر
+  }
+
+  // فلترة واختيار أقرب محطة
+  function getClosestResult(
     results: NominatimResult[],
     userCoords: Coordinates,
-    cityName?: string
-): NominatimResult | null {
+    cityName?: string,
+  ): NominatimResult | null {
     // 1. لو مفيش نتائج رجعت من السيرفر أصلاً
     if (!results || results.length === 0) {
-        toast.error('Sorry, no stations found for the specified location.');
-        return null;
+      toast.error("Sorry, no stations found for the specified location.");
+      return null;
     }
 
     // 2. الفلترة الصارمة داخل المدينة (أو الحي)
     const filtered = cityName
-        ? results.filter(
-              (r) =>
-                  r.address?.city === cityName ||
-                  r.address?.town === cityName ||
-                  r.address?.suburb === cityName
-          )
-        : results;
+      ? results.filter(
+          (r) =>
+            r.address?.city === cityName ||
+            r.address?.town === cityName ||
+            r.address?.suburb === cityName,
+        )
+      : results;
 
     // 3. لو ملقاش نتائج "داخل المدينة" تحديداً، يطلع إيرور ويرجع null
     if (filtered.length === 0) {
-        toast.error('Sorry, no stations found for the specified location.');
-        return null;
+      toast.error("Sorry, no stations found for the specified location.");
+      return null;
     }
 
     // 4. لو لقى نتائج، يبدأ يحسب الأقرب جغرافياً من النتائج المفلترة فقط
@@ -163,76 +112,96 @@ function getClosestResult(
     let minDist = Infinity;
 
     filtered.forEach((item) => {
-        const lat = parseFloat(item.lat);
-        const lon = parseFloat(item.lon);
-        const dist = haversineDistance(
-            userCoords.lat,
-            userCoords.lng,
-            lat,
-            lon
-        );
+      const lat = parseFloat(item.lat);
+      const lon = parseFloat(item.lon);
+      const dist = haversineDistance(userCoords.lat, userCoords.lng, lat, lon);
 
-        if (dist < minDist) {
-            minDist = dist;
-            closest = item;
-        }
+      if (dist < minDist) {
+        minDist = dist;
+        closest = item;
+      }
     });
 
     return closest;
-}
+  }
 
-    async function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-        if (!from || !userCoords) return;
+  async function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    if (!from || !userCoords) return;
 
-        try {
-            // جلب كل المحطات بنفس الاسم مع التفاصيل
-            const res = await fetch(
-                `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-                    from
-                )}&format=json&addressdetails=1`
-            );
-            const data: NominatimResult[] = await res.json();
-            console.log("fdgdrgtsh", { data });
+    try {
+      // جلب كل المحطات بنفس الاسم مع التفاصيل
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+          from,
+        )}&format=json&addressdetails=1`,
+      );
+      const data: NominatimResult[] = await res.json();
+      console.log("fdgdrgtsh", { data });
 
-            // نحاول نعرف المدينة/الحي من بيانات الـ user أو أول نتيجة
-            const cityName =
-                data[0]?.address?.city ||
-                data[0]?.address?.town ||
-                data[0]?.address?.suburb;
+      // نحاول نعرف المدينة/الحي من بيانات الـ user أو أول نتيجة
+      const cityName =
+        data[0]?.address?.city ||
+        data[0]?.address?.town ||
+        data[0]?.address?.suburb;
 
-            // نجيب أقرب محطة بعد الفلترة
-            const closest = getClosestResult(data, userCoords, cityName);
+      // نجيب أقرب محطة بعد الفلترة
+      const closest = getClosestResult(data, userCoords, cityName);
 
-            if (!closest) {
-                console.error("No destination found");
-                return;
-            }
+      if (!closest) {
+        console.error("No destination found");
+        return;
+      }
 
-            openGoogleMaps(userCoords, closest);
-        } catch (err) {
-            console.error("Error fetching destination:", err);
-        }
+      openGoogleMaps(userCoords, closest);
+    } catch (err) {
+      console.error("Error fetching destination:", err);
     }
+  }
 
-    function openGoogleMaps(
-        userCoords: Coordinates,
-        destCoords: { lat: string; lon: string }
-    ) {
-        const origin = `${userCoords.lat},${userCoords.lng}`;
-        const destination = `${parseFloat(destCoords.lat)},${parseFloat(
-            destCoords.lon
-        )}`;
+  //////////////
+  async function handleSearch() {
+    const posCoords = await reverseGeocoding(from);
+    const distCoords = await reverseGeocoding(to);
 
-        const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
-        window.open(url, "_blank");
-    }
+    console.log({
+      userLocation: from,
+      userLatitude: posCoords?.lat || 0,
+      userLongitude: posCoords?.lon || 0,
+      destination: to,
+      destinationLatitude: distCoords?.lat || 0,
+      destinationLongitude: distCoords?.lon || 0,
+    }, from, to);
 
-    return (
-        <div className="flex flex-row items-center justify-center gap-4 mt-10">
-            <button
-                disabled={disabled}
-                className="
+    setSearchParams({
+      userLocation: from,
+      userLatitude: posCoords?.lat || 0,
+      userLongitude: posCoords?.lon || 0,
+      destination: to,
+      destinationLatitude: distCoords?.lat || 0,
+      destinationLongitude: distCoords?.lon || 0,
+    });
+  }
+
+  function openGoogleMaps(
+    userCoords: Coordinates,
+    destCoords: { lat: string; lon: string },
+  ) {
+    const origin = `${userCoords.lat},${userCoords.lng}`;
+    const destination = `${parseFloat(destCoords.lat)},${parseFloat(
+      destCoords.lon,
+    )}`;
+
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+    window.open(url, "_blank");
+  }
+
+  return (
+    <div className="flex flex-row items-center justify-center gap-4 mt-10">
+      <button
+        onClick={handleSearch}
+        disabled={loading}
+        className="
       flex items-center justify-center gap-2 
       bg-green-600 hover:bg-green-700 active:bg-green-800
       text-white font-semibold
@@ -241,23 +210,23 @@ function getClosestResult(
       transition-all duration-300 text-[10px] sm:text-base
       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-600
     "
-            >
-                🔍
-                <span>
-                    {isLoading === true ? (
-                        <div className="flex gap-2">
-                            <LoadingSpinner /> <p>Loading...</p>
-                        </div>
-                    ) : (
-                        "Search"
-                    )}
-                </span>
-            </button>
+      >
+        🔍
+        <span>
+          {isLoading === true ? (
+            <div className="flex gap-2">
+              <LoadingSpinner /> <p>Loading...</p>
+            </div>
+          ) : (
+            "Search"
+          )}
+        </span>
+      </button>
 
-            <button
-                onClick={handleClick}
-                disabled={disabled}
-                className="
+      <button
+        onClick={handleClick}
+        disabled={loading}
+        className="
       flex items-center justify-center gap-2 w-
       bg-green-600 hover:bg-green-700 active:bg-green-800
       text-white font-semibold
@@ -266,16 +235,16 @@ function getClosestResult(
       transition-all duration-300 text-[10px] sm:text-base
       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-600
     "
-            >
-                <MapPin className="w-4 h-4 text-white" />
-                {isLoading === true ? (
-                    <>
-                        <LoadingSpinner /> <p>Loading...</p>
-                    </>
-                ) : (
-                    "Open In Google Maps"
-                )}
-            </button>
-        </div>
-    );
+      >
+        <MapPin className="w-4 h-4 text-white" />
+        {isLoading === true ? (
+          <>
+            <LoadingSpinner /> <p>Loading...</p>
+          </>
+        ) : (
+          "Open In Google Maps"
+        )}
+      </button>
+    </div>
+  );
 }

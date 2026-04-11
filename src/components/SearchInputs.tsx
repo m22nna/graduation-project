@@ -83,6 +83,7 @@ export default function SearchInputs() {
 
     async function fetchCityName(position: Coordinates) {
       try {
+        setIsLoading(true);
         const res = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${position.lat}&lon=${position.lng}&format=json`,
           {
@@ -97,17 +98,17 @@ export default function SearchInputs() {
 
         const data = await res.json();
         console.log("Reverse Geocode Data:", data);
-        console.log("Address object:", data.address);
 
         setFrom(
           `${
             data.address.road || data.address.suburb || data.address.town
-          } - ${data.address.city}`,
+          } - ${data.address.city || data.address.town || ""}`
         );
-
-        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching city:", error);
+        toast.error("Failed to fetch city name. Please enter it manually.");
+      } finally {
+        setIsLoading(false);
       }
     }
   }, []);
@@ -134,9 +135,9 @@ export default function SearchInputs() {
                   <span className="w-2.5 h-2.5 bg-blue-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
                   <div
                     className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
-                             transition-all duration-300 w-full
-                             hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500"
+                               transition-all duration-300 w-full
+                               hover:border-green-400 
+                               focus-within:scale-105 focus-within:border-green-500"
                   >
                     <span className="text-gray-600 font-medium whitespace-nowrap">
                       From
@@ -168,9 +169,9 @@ export default function SearchInputs() {
                   <span className="w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-125" />
                   <div
                     className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 
-                             transition-all duration-300 w-full
-                             hover:border-green-400 
-                             focus-within:scale-105 focus-within:border-green-500"
+                               transition-all duration-300 w-full
+                               hover:border-green-400 
+                               focus-within:scale-105 focus-within:border-green-500"
                   >
                     <span className="text-gray-600 font-medium whitespace-nowrap">
                       To
@@ -188,6 +189,7 @@ export default function SearchInputs() {
 
               <OpenMapButton
                 from={from}
+                to={to}
                 userCoords={coordinates}
                 disabled={disabled}
                 isLoading={isLoading}
