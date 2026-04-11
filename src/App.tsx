@@ -99,9 +99,12 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <UserContextProvider>
         <GoogleOAuthProvider clientId="11202583079-lia5e3fp87knod8accrqlvnh7u7ldcl6.apps.googleusercontent.com">
-          <div className="container">
+          {/* <div className="container">
             <RouterProvider router={router} />
-          </div>
+          </div> */}
+          
+            <RouterProvider router={router} />
+          
           <ReactQueryDevtools initialIsOpen={false} />
           <Toaster
             position="top-center"
