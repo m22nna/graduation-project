@@ -1,11 +1,8 @@
 import { MapPin } from "lucide-react";
 import LoadingSpinner from "../LoadingSpinner";
 import toast from "react-hot-toast";
-import { useRoutes } from "../../features/useRoutes";
 import { reverseGeocoding } from "../../services/reverseGeocoding";
-import { useState } from "react";
-import { useRoutesContext } from "@/context/foundRoutesContext";
-
+import React from "react";
 type NominatimResult = {
   lat: string;
   lon: string;
@@ -29,6 +26,7 @@ type OpenMapButtonProps = {
   userCoords: Coordinates | null;
   disabled: boolean;
   isLoading: boolean;
+  setSearchParams: React.Dispatch<React.SetStateAction<SearchRouteParams | null>>;
 };
 
 interface SearchRouteParams {
@@ -46,16 +44,9 @@ export default function OpenMapButton({
   userCoords,
   disabled,
   isLoading,
+  setSearchParams,
 }: OpenMapButtonProps) {
-  const [searchParams, setSearchParams] = useState<SearchRouteParams | null>(
-    null,
-  );
-  const { routes, isLoading: isSearching, error } = useRoutes(searchParams);
-  const { setFinalRoutes } = useRoutesContext();
-  if (routes) setFinalRoutes(routes.data);
-  if (error) toast.error("Error fetching routes: " + error.message);
-
-  const loading = isLoading || isSearching || disabled;
+  const loading = isLoading || disabled;
 
   // Haversine formula لحساب المسافة الدقيقة
   function haversineDistance(

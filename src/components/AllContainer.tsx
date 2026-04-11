@@ -1,5 +1,7 @@
-import { useRoutesContext } from "@/context/foundRoutesContext";
+import { useRoutes } from "@/features/useRoutes";
+import type { SearchRouteParams } from "@/services/routesApi";
 import TransItem from "./TransItem";
+import LoadingSpinner from "./LoadingSpinner";
 
 // // داتا وهمية (Mock Data) مطابقة لشكل الـ API عشان تجرب الشكل
 // const mockRoutes = [
@@ -26,9 +28,33 @@ import TransItem from "./TransItem";
 //   }
 // ];
 
-function AllContainer() {
-  const { finalRoutes } = useRoutesContext();
-  console.log("Final Routes from Context:", finalRoutes);
+interface AllContainerProps {
+  searchParams: SearchRouteParams | null;
+}
+
+function AllContainer({ searchParams }: AllContainerProps) {
+  const { routes, isLoading, error } = useRoutes(searchParams);
+  const finalRoutes = routes?.data || [];
+  
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
+        <div className="flex flex-col gap-4 items-center justify-center">
+          <LoadingSpinner />
+          <p className="text-gray-500 font-bold">Loading your routes...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
+        <p className="text-red-500 font-bold">Error loading routes. Try again later.</p>
+      </div>
+    );
+  }
+
   return (
   <>
     {finalRoutes && finalRoutes.length > 0 ? (

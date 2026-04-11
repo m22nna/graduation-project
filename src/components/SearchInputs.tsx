@@ -5,8 +5,13 @@ import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
 import OpenMapButton from "./ui/OpenMapButton";
 import { toast } from "react-hot-toast";
 import VoiceRecorder from "./VoiceRecorder";
+import type { SearchRouteParams } from "@/services/routesApi";
 
-export default function SearchInputs() {
+interface SearchInputsProps {
+  setSearchParams: React.Dispatch<React.SetStateAction<SearchRouteParams | null>>;
+}
+
+export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [swapClicked, setSwapClicked] = useState(false);
@@ -193,6 +198,7 @@ export default function SearchInputs() {
                 userCoords={coordinates}
                 disabled={disabled}
                 isLoading={isLoading}
+                setSearchParams={setSearchParams}
               />
 
               <p className="text-xs text-red-500 px-2 text-right mt-6">

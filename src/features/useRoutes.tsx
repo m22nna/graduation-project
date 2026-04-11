@@ -8,12 +8,12 @@ export function useRoutes(searchParams: SearchRouteParams | null) {
     data: routes,
     error,
   } = useQuery({
-    queryKey: ["routes"],
+    queryKey: ["routes", searchParams],
     queryFn: () => {
         if (!searchParams) throw new Error("No search parameters provided");
         return fetchRoutes(searchParams);
     },
-    // enabled: !!searchParams,
+    enabled: !!searchParams,
   });
 
   return { isLoading, routes, error };
