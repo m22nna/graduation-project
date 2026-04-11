@@ -19,12 +19,17 @@ import VerifyCode from './pages/VerifyCode';
 import ResetPassword from './pages/ResetPassword';
 import History from './pages/History';
 import Dashboard from "./pages/Dashboard";
+
 import UserContextProvider from "./context/UserContext";
 
 import "./App.css";
 
 // Setup React Query Client
 const queryClient = new QueryClient();
+
+
+import UpdateData from "./pages/UpdateData";
+import UpdatePassword from "./pages/UpdatePssword";
 
 const router = createBrowserRouter([
   {
@@ -70,17 +75,40 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "forgetpassword",
-        element: <ForgetPassword />,
-      },
-      {
-        path: "verifycode",
-        element: <VerifyCode />,
-      },
-      {
-        path: "resetpassword",
-        element: <ResetPassword />,
-      },
+// <<<<<<< Updated upstream
+//         path: "forgetpassword",
+//         element: <ForgetPassword />,
+//       },
+//       {
+//         path: "verifycode",
+//         element: <VerifyCode />,
+//       },
+//       {
+//         path: "resetpassword",
+//         element: <ResetPassword />,
+//       },
+// =======
+                 path: "/forgetpassword",
+                 element: <ForgetPassword/>,
+             },
+              {
+                 path: "/verifycode",
+                 element: <VerifyCode />,
+             },
+              {
+                 path: "/resetpassword",
+                 element: <ResetPassword />,
+             },
+             {
+                 path: "/updatedata",
+                 element: <UpdateData />,
+             },
+             {
+                 path: "/updatepassword",
+                 element: <UpdatePassword />,
+             },
+
+
     ],
   },
 ]);

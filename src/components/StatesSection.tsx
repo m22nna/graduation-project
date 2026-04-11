@@ -27,12 +27,48 @@ const Counter = ({ title, endValue, duration = 2000 }: CounterProps) => {
 
   return (
     
-    <div className="bg-white shadow-md rounded-full w-15 text-center  ">
-      <h2 className="text-2xl font-bold" style={{color:"var(--main-internal-color)"}}>{value}</h2>     
+    // <div className="bg-white border-8 border-[var(--main-internal-color)] w-44 h-44 rounded-full  flex align-middle justify-center flex-col ">
+    //   <h2 className="text-2xl font-bold" style={{color:"var(--main-internal-color)"}}>{value}</h2>     
       
-        <p className=" mt-2 text-xl mb-2" style={{color:"var(--main-internal-color)"}}>{title}</p>   
+    //     <p className=" mt-2 text-xl mb-2" style={{color:"var(--main-internal-color)"}}>{title}</p>   
       
-    </div>
+    // </div>
+
+<div className="relative w-44 h-44 flex items-center justify-center">
+  
+  {/* SVG الدايرة */}
+  <svg className="absolute inset-0 w-full h-full rotate-[-90deg]">
+    <circle
+      cx="88"
+      cy="88"
+      r="80"
+      stroke="var(--main-internal-color)"
+      strokeWidth="6"
+      fill="none"
+      strokeDasharray="502"
+      strokeDashoffset="502"
+      className="animate-draw"
+    />
+  </svg>
+
+  {/* المحتوى */}
+  <div className="flex flex-col items-center justify-center">
+    <h2
+      className="text-2xl font-bold"
+      style={{ color: "var(--main-internal-color)" }}
+    >
+      {value}
+    </h2>
+
+    <p
+      className="mt-2 text-xl mb-2"
+      style={{ color: "var(--main-internal-color)" }}
+    >
+      {title}
+    </p>
+  </div>
+
+</div>
     
   );
 };
@@ -48,7 +84,7 @@ const StatsSection = () => {
      
       
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-3">
         <Counter title="Feedback" endValue={1200} />
         <Counter title="الرحلات" endValue={1200} />
         <Counter title="المستخدمين" endValue={150} />

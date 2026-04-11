@@ -299,8 +299,8 @@ const AppSidebar: FC = () => {
                 label="Users"
                 className="my-5"
               >
-                <SidebarItem href="#">Update User Data</SidebarItem>
-                <SidebarItem href="#">Update Password</SidebarItem>
+                <SidebarItem href="#" onClick={()=> navigate("/updatedata")}>Update User Data</SidebarItem>
+                <SidebarItem href="#" onClick={()=> navigate("/updatepassword")}>Update Password</SidebarItem>
               </SidebarCollapse>
 
               {/* Logout */}

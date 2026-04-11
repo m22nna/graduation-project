@@ -47,4 +47,15 @@
   color: #888;
 }
 
+@keyframes draw {
+  from {
+    stroke-dashoffset: 502;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
+.animate-draw {
+  animation: draw 2s ease forwards;
+}
