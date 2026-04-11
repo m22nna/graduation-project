@@ -11,7 +11,7 @@ import RoutesQA from "./pages/RoutesQA";
 import AppLayout from "./components/AppLayout";
 import AuthLayout from "./components/AuthLayout";
 import Overview from "./pages/Overview";
-import Contact from "./components/Contact";
+import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ForgetPassword from './pages/ForgetPaaword';
@@ -139,14 +139,20 @@ export default function App() {
             gutter={12}
             containerStyle={{ margin: "8px", marginTop: "20px" }}
             toastOptions={{
-              success: { duration: 3000 },
-              error: { duration: 5000 },
+              success: { 
+                duration: 3000,
+                style: { color: "rgb(22 163 74)" } // green-600
+              },
+              error: { 
+                duration: 5000,
+                style: { color: "rgb(239 68 68)" } // red-500
+              },
               style: {
                 fontSize: "16px",
                 maxWidth: "500px",
                 padding: "16px 24px",
                 backgroundColor: "white",
-                color: "rgb(239 68 68)",
+                color: "rgb(55 65 81)", // gray-700 default text color
               },
             }}
           />
