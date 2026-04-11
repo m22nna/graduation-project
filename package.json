@@ -65,7 +65,7 @@
     "@rollup/rollup-linux-x64-gnu": "latest"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "description": "React + TypeScript + Vite",
   "main": "eslint.config.js",
