@@ -28,7 +28,7 @@ export interface TransGuideRoute {
 export async function fetchRoutes(searchParams: SearchRouteParams) {
     try {
         const { data } = await axios.post(
-            "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
+            "https://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
             searchParams
         );
         console.log(data);
