@@ -1,32 +1,45 @@
+import axios from "axios";
+
 export interface SearchRouteParams {
-  userLocation: string;
-  userLatitude: number;
-  userLongitude: number;
-  destination: string;
-  destinationLatitude: number;
-  destinationLongitude: number;
+    userLocation: string;
+    userLatitude: number;
+    userLongitude: number;
+    destination: string;
+    destinationLatitude: number;
+    destinationLongitude: number;
+}
+
+export interface RouteDetail {
+    routeName: string;
+    averageTimeInMinutes: number;
+    ticketPrice: number;
+    [key: string]: any;
+}
+
+export interface TransGuideRoute {
+    routeName: string;
+    routeType: string;
+    closestStationName: string;
+    transferStations: string[];
+    routeDetails: RouteDetail[];
+    [key: string]: any;
 }
 
 export async function fetchRoutes(searchParams: SearchRouteParams) {
-  
-  const response = await fetch(
-    "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({searchParams}),
-    },
-  );
-  
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "مشكلة في تحميل الطرق");
-  }
-  
-  const data = await response.json();
-  console.log(data);
-  
-  return data;
+    try {
+        const { data } = await axios.post(
+            "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
+            searchParams
+        );
+        console.log(data);
+        return data;
+    } catch (error: any) {
+        const errorData = error.response?.data || {};
+        throw new Error(
+            errorData._errormessage ||
+                errorData.message ||
+                error.message ||
+                "مشكلة في تحميل الطرق"
+        );
+    }
 }
