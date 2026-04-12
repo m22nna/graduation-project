@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export interface SearchRouteParams {
     userLocation: string;
     userLatitude: number;
@@ -26,20 +24,28 @@ export interface TransGuideRoute {
 }
 
 export async function fetchRoutes(searchParams: SearchRouteParams) {
-    try {
-        const { data } = await axios.post(
-            "https://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
-            searchParams
-        );
-        console.log(data);
-        return data;
-    } catch (error: any) {
-        const errorData = error.response?.data || {};
+    const response = await fetch(
+        "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(searchParams),
+        },
+    );
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
         throw new Error(
             errorData._errormessage ||
                 errorData.message ||
-                error.message ||
-                "مشكلة في تحميل الطرق"
+                "مشكلة في تحميل الطرق",
         );
     }
+
+    const data = await response.json();
+    console.log(data);
+
+    return data;
 }
