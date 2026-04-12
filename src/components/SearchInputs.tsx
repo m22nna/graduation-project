@@ -7,7 +7,7 @@ import OpenMapButton from "./ui/OpenMapButton";
 import { toast } from "react-hot-toast";
 import VoiceRecorder from "./VoiceRecorder";
 import type { SearchRouteParams } from "@/services/routesApi";
-import LiveCamera from '../components/LiveCamera'
+
 
 interface SearchInputsProps {
   setSearchParams: React.Dispatch<React.SetStateAction<SearchRouteParams | null>>;
