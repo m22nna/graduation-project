@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { useIsFetching } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftRight, ArrowDownUp } from "lucide-react";
 import OpenMapButton from "./ui/OpenMapButton";
@@ -12,8 +13,14 @@ interface SearchInputsProps {
 }
 
 export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const getSearchState = () => {
+    try {
+      return JSON.parse(sessionStorage.getItem("app_searchState") || "{}");
+    } catch { return {}; }
+  };
+
+  const [from, setFrom] = useState(() => getSearchState().from || "");
+  const [to, setTo] = useState(() => getSearchState().to || "");
   const [swapClicked, setSwapClicked] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +30,11 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
     lng: number;
     accuracy: number;
   };
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(() => getSearchState().coordinates || null);
+
+  useEffect(() => {
+    sessionStorage.setItem("app_searchState", JSON.stringify({ from, to, coordinates }));
+  }, [from, to, coordinates]);
 
   useEffect(() => {
     if (from === "") {
@@ -33,7 +44,29 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
     }
   }, [from]);
 
+  const isFetchingRoutes = useIsFetching({ queryKey: ["routes"] });
+  const isRouteLoading = isFetchingRoutes > 0;
+
   useEffect(() => {
+    // If the user already has data in their search boxes (from cache), don't auto detect.
+    if (from || to) {
+      setIsLoading(false);
+      return;
+    }
+
+    const cachedLoc = sessionStorage.getItem("app_userLocation");
+    if (cachedLoc) {
+      try {
+        const data = JSON.parse(cachedLoc);
+        setCoordinates(data.coords);
+        setFrom(data.city);
+        setIsLoading(false);
+        return;
+      } catch (e) {
+        console.error("Error parsing cached location");
+      }
+    }
+
     if (!navigator.geolocation) {
       toast.error("Geolocation is not supported by this browser.");
       return;
@@ -104,11 +137,16 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
         const data = await res.json();
         console.log("Reverse Geocode Data:", data);
 
-        setFrom(
-          `${
+        const cityName = `${
             data.address.road || data.address.suburb || data.address.town
-          } - ${data.address.city || data.address.town || ""}`
-        );
+          } - ${data.address.city || data.address.town || ""}`;
+          
+        setFrom(cityName);
+        
+        sessionStorage.setItem("app_userLocation", JSON.stringify({
+           coords: position,
+           city: cityName
+        }));
       } catch (error) {
         console.error("Error fetching city:", error);
         toast.error("Failed to fetch city name. Please enter it manually.");
@@ -149,10 +187,11 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
                     </span>
                     <div className="h-6 w-px bg-gray-300" />
                     <Input
+                      disabled={isRouteLoading}
                       value={from}
                       onChange={(e) => setFrom(e.target.value)}
                       placeholder="Enter your location"
-                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
+                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2 disabled:opacity-50"
                     />
                   </div>
                 </div>
@@ -183,10 +222,11 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
                     </span>
                     <div className="h-6 w-px bg-gray-300" />
                     <Input
+                      disabled={isRouteLoading}
                       value={to}
                       onChange={(e) => setTo(e.target.value)}
                       placeholder="Enter your destination"
-                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2"
+                      className="flex-1 bg-transparent text-sm md:text-base font-semibold text-gray-800 border-none focus:ring-0 focus:outline-none px-2 disabled:opacity-50"
                     />
                   </div>
                 </div>
