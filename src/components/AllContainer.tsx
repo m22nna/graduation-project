@@ -2,7 +2,7 @@ import { useRoutes } from "@/features/useRoutes";
 import type { SearchRouteParams } from "@/services/routesApi";
 import TransItem from "./TransItem";
 import TransItemSkeleton from "./TransItemSkeleton";
-import { TransGuideRoute } from "@/services/routesApi";
+import type { TransGuideRoute } from "@/services/routesApi";
 
 // // داتا وهمية (Mock Data) مطابقة لشكل الـ API عشان تجرب الشكل
 // const mockRoutes = [
