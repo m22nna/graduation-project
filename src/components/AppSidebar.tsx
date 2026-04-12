@@ -179,6 +179,7 @@ import { useState, useContext, useEffect } from "react";
 import type { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "@/context/UserContext";
+import LiveCamera from '../components/LiveCamera'
 
 const AppSidebar: FC = () => {
   const navigate = useNavigate();
@@ -292,6 +293,16 @@ const AppSidebar: FC = () => {
                 className="my-5"
               >
                 Inbox
+              </SidebarItem>
+              
+              
+              <SidebarItem
+                href="#"
+                icon={HiInbox}
+                // label="3"
+                className="my-5"
+              >
+                <LiveCamera/>
               </SidebarItem>
 
               <SidebarCollapse

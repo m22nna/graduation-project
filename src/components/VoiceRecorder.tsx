@@ -1,7 +1,7 @@
 import { useReactMediaRecorder } from "react-media-recorder-2";
 import { Mic, Square, Trash2, Loader2, Send } from "lucide-react"; // ضفت Loader2
 import { useRef, useState } from "react";
-
+import LiveCamera from '../components/LiveCamera'
 const VoiceRecorder = () => {
   const audioBlobRef = useRef<Blob | null>(null);
   const [loading, setLoading] = useState(false); // حالة التحميل
@@ -58,14 +58,19 @@ const VoiceRecorder = () => {
 
         <div className="flex items-center gap-2">
           {!isRecording ? (
-            <button
+          <div className="dev flex flex-wrap">
+              <button
               onClick={startRecording}
               disabled={loading}
               className="p-2 bg-green-50 hover:bg-green-100 text-green-600 rounded-full transition-colors disabled:opacity-50"
               title="Start Recording"
             >
               <Mic size={18} />
+              
             </button>
+            <LiveCamera/>
+          </div>
+            
           ) : (
             <button
               onClick={stopRecording}

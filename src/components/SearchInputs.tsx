@@ -7,6 +7,7 @@ import OpenMapButton from "./ui/OpenMapButton";
 import { toast } from "react-hot-toast";
 import VoiceRecorder from "./VoiceRecorder";
 import type { SearchRouteParams } from "@/services/routesApi";
+import LiveCamera from '../components/LiveCamera'
 
 interface SearchInputsProps {
   setSearchParams: React.Dispatch<React.SetStateAction<SearchRouteParams | null>>;
@@ -170,6 +171,7 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
         <div className="w-full max-w-6xl">
           <Card className="bg-white border border-gray-200 rounded-2xl transition-all duration-300">
             <VoiceRecorder />
+            
 
             <CardContent className="p-6 pb-0">
               <div className="flex flex-col [@media(min-width:850px)]:flex-row items-center justify-center gap-5 md:gap-8">
