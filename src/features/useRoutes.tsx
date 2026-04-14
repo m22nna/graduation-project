@@ -1,19 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+// <<<<<<< HEAD
+// import { useEffect } from "react";
+// import toast from "react-hot-toast";
+// import { fetchRoutes } from "../services/routesApi";
+// import type { SearchRouteParams } from "../services/routesApi";
+
+// export function useRoutes(searchParams: SearchRouteParams | null) {
+// =======
+import { useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import { fetchRoutes } from "../services/routesApi";
 import type { SearchRouteParams } from "../services/routesApi";
+import { UserContext } from "../context/UserContext";
 
 export function useRoutes(searchParams: SearchRouteParams | null) {
+    const { userToken } = useContext(UserContext);
+
+
     const {
         isLoading,
         data: routes,
         error,
     } = useQuery({
-        queryKey: ["routes", searchParams],
+// <<<<<<< HEAD
+//         queryKey: ["routes", searchParams],
+//         queryFn: () => {
+//             if (!searchParams) throw new Error("No search parameters provided");
+//             return fetchRoutes(searchParams);
+// =======
+        queryKey: ["routes", searchParams, userToken],
         queryFn: () => {
             if (!searchParams) throw new Error("No search parameters provided");
-            return fetchRoutes(searchParams);
+            return fetchRoutes(searchParams, userToken);
+
         },
         enabled: !!searchParams,
         retry: false,

@@ -48,6 +48,18 @@ export default function OpenMapButton({
 }: OpenMapButtonProps) {
   const loading = isLoading || disabled;
 
+
+  // Auto search logic
+  React.useEffect(() => {
+    const shouldAutoSearch = sessionStorage.getItem("app_autoSearch");
+    if (shouldAutoSearch === "true" && from && to && !disabled && !isLoading) {
+      sessionStorage.removeItem("app_autoSearch");
+      handleSearch();
+    }
+  }, [from, to, disabled, isLoading]);
+
+
+
   // Haversine formula لحساب المسافة الدقيقة
   function haversineDistance(
     lat1: number,

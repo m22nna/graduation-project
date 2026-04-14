@@ -23,13 +23,21 @@ export interface TransGuideRoute {
     [key: string]: any;
 }
 
-export async function fetchRoutes(searchParams: SearchRouteParams) {
+// <<<<<<< HEAD
+// export async function fetchRoutes(searchParams: SearchRouteParams) {
+// =======
+export async function fetchRoutes(searchParams: SearchRouteParams, token: string | null) {
+
     const response = await fetch(
         "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+// <<<<<<< HEAD
+// =======
+                ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+
             },
             body: JSON.stringify(searchParams),
         },
