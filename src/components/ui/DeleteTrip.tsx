@@ -1,9 +1,10 @@
 /**
  * [MODIFIED] Using useDeleteTrip hook for cleaner deletion logic
  */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
 import { useDeleteTrip } from "@/features/useHistory";
+import ConfirmModal from "./ConfirmModal";
 
 interface DeleteTripProps {
   tripId: string;
@@ -12,20 +13,26 @@ interface DeleteTripProps {
 const DeleteTrip: React.FC<DeleteTripProps> = ({ tripId }) => {
   const { userToken, userId } = useContext(UserContext);
   const { mutate: deleteTrip, isPending } = useDeleteTrip();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = () => {
     if (!userToken) return;
+    setIsModalOpen(true);
+  };
 
-    const confirmDelete = window.confirm("هل تريد حذف الرحلة؟");
-    if (!confirmDelete) return;
-
-    // Trigger the mutation
-    deleteTrip({ tripId, userId: userId || "", token: userToken });
+  const confirmDelete = () => {
+    deleteTrip(
+      { tripId, userId: userId || "", token: userToken },
+      {
+        onSettled: () => setIsModalOpen(false),
+      }
+    );
   };
 
   return (
-    <button
-      onClick={handleDelete}
+    <>
+      <button
+        onClick={handleDelete}
       disabled={isPending}
       className={`bg-[var(--main-hover-color)] text-white font-semibold flex items-center justify-center p-2 rounded-lg transition-all duration-300 active:scale-95 ${
         isPending ? "opacity-50 cursor-not-allowed" : ""
@@ -70,7 +77,17 @@ const DeleteTrip: React.FC<DeleteTripProps> = ({ tripId }) => {
           />
         </svg>
       )}
-    </button>
+      </button>
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={confirmDelete}
+        title="حذف الرحلة"
+        message="هل تريد حذف هذه الرحلة من السجل؟"
+        isPending={isPending}
+      />
+    </>
   );
 };
 

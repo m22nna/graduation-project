@@ -1,9 +1,7 @@
-/**
- * [MODIFIED] Independent component for clearing all search history
- */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "@/context/UserContext";
 import { useDeleteAllHistory } from "@/features/useHistory";
+import ConfirmModal from "./ui/ConfirmModal";
 
 interface DeleteHistoryProps {
   hasHistory: boolean;
@@ -12,19 +10,26 @@ interface DeleteHistoryProps {
 const DeleteHistory: React.FC<DeleteHistoryProps> = ({ hasHistory }) => {
   const { userToken, userId } = useContext(UserContext);
   const { mutate: clearAllHistory, isPending: isClearing } = useDeleteAllHistory();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClearAll = () => {
     if (!userToken || !hasHistory) return;
+    setIsModalOpen(true);
+  };
 
-    const confirmClear = window.confirm("هل أنت متأكد من مسح السجل بالكامل؟");
-    if (!confirmClear) return;
-
-    clearAllHistory({ userId: userId || "", token: userToken });
+  const confirmClear = () => {
+    clearAllHistory(
+      { userId: userId || "", token: userToken },
+      {
+        onSettled: () => setIsModalOpen(false),
+      }
+    );
   };
 
   if (!hasHistory) return null;
 
   return (
+    <>
     <button
       onClick={handleClearAll}
       disabled={isClearing}
@@ -55,6 +60,16 @@ const DeleteHistory: React.FC<DeleteHistoryProps> = ({ hasHistory }) => {
       }
       مسح السجل
     </button>
+
+    <ConfirmModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      onConfirm={confirmClear}
+      title="مسح السجل"
+      message="هل أنت متأكد من مسح سجل الرحلات بالكامل؟ لا يمكن التراجع عن هذه الخطوة."
+      isPending={isClearing}
+    />
+    </>
   );
 };
 
