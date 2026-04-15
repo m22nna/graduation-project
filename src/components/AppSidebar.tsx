@@ -348,14 +348,14 @@ const AppSidebar: FC = () => {
               }}
               className="bg-[var(--main-internal-color)] text-white px-4 py-2 rounded-lg text-lg"
             >
-              Login
+              تسجيل الدخول
             </button>
 
             <button
               onClick={() => setOpenModal(false)}
-              className="bg-gray-200 px-4 py-2 rounded-lg text-lg"
+              className="bg-gray-200 px-8 py-2 rounded-lg text-lg"
             >
-              Cancel
+              الغاء
             </button>
           </div>
         </div>
