@@ -23,10 +23,11 @@ export interface TransGuideRoute {
     [key: string]: any;
 }
 
-// <<<<<<< HEAD
-// export async function fetchRoutes(searchParams: SearchRouteParams) {
-// =======
-export async function fetchRoutes(searchParams: SearchRouteParams, token: string | null) {
+
+
+export async function fetchRoutes(searchParams: SearchRouteParams, token?: string | null) { // [MODIFIED] Added token parameter
+
+
 
     const response = await fetch(
         "http://transguideapi.runasp.net/api/Location/SearchRoutes?pageIndex=1&pageSize=10",
@@ -34,8 +35,9 @@ export async function fetchRoutes(searchParams: SearchRouteParams, token: string
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-// <<<<<<< HEAD
-// =======
+
+
+
                 ...(token ? { "Authorization": `Bearer ${token}` } : {}),
 
             },
@@ -47,8 +49,8 @@ export async function fetchRoutes(searchParams: SearchRouteParams, token: string
         const errorData = await response.json().catch(() => ({}));
         throw new Error(
             errorData._errormessage ||
-                errorData.message ||
-                "مشكلة في تحميل الطرق",
+            errorData.message ||
+            "مشكلة في تحميل الطرق",
         );
     }
 
