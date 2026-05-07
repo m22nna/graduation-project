@@ -254,7 +254,7 @@ function RoutesTable() {
     }
 
     return (
-        <div className="bg-white rounded-xl shadow-lg mb-12">
+        <div className="bg-white rounded-xl shadow-lg mb-12 text-gray-900">
 
             <h2 className="text-2xl font-semibold  text-center py-4" style={{color:"var(--main-internal-color)"}}>
 
@@ -271,31 +271,31 @@ function RoutesTable() {
                 <Table className="w-full lg:table-fixed min-w-[950px]">
                     <TableHeader>
                         <TableRow className="border-b-2 border-green-300">
-                            <TableHead className="text-center w-[15%]">
+                            <TableHead className="text-center w-[15%] text-black">
                                 القطاع
                             </TableHead>
-                            <TableHead className="text-center w-[8%]">
+                            <TableHead className="text-center w-[8%] text-black">
                                 الخط
                             </TableHead>
-                            <TableHead className="text-center w-[14%]">
+                            <TableHead className="text-center w-[14%] text-black">
                                 من
                             </TableHead>
-                            <TableHead className="text-center w-[14%]">
+                            <TableHead className="text-center w-[14%] text-black">
                                 إلى
                             </TableHead>
 
                             {/* المحطات كبيرة شوية */}
-                            <TableHead className="text-center w-[26%]">
+                            <TableHead className="text-center w-[26%] text-black">
                                 المحطات
                             </TableHead>
 
-                            <TableHead className="text-center w-[9%]">
+                            <TableHead className="text-center w-[9%] text-black">
                                 المدة
                             </TableHead>
-                            <TableHead className="text-center w-[8%]">
+                            <TableHead className="text-center w-[8%] text-black">
                                 السعر
                             </TableHead>
-                            <TableHead className="text-center w-[8%]">
+                            <TableHead className="text-center w-[8%] text-black">
                                 الحالة
                             </TableHead>
                         </TableRow>
