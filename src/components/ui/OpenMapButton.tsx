@@ -164,8 +164,10 @@ export default function OpenMapButton({
 
   //////////////
   async function handleSearch() {
-    const posCoords = await reverseGeocoding(from);
-    const distCoords = await reverseGeocoding(to);
+    const [posCoords, distCoords] = await Promise.all([
+      reverseGeocoding(from),
+      reverseGeocoding(to)
+    ]);
 
     console.log({
       userLocation: from,
