@@ -1,10 +1,16 @@
 import { useReactMediaRecorder } from "react-media-recorder-2";
-import { Mic, Square, Trash2, Loader2, Send } from "lucide-react"; // ضفت Loader2
-import { useRef, useState } from "react";
-import LiveCamera from '../components/LiveCamera'
-const VoiceRecorder = () => {
+import { Mic, Square, Trash2, Loader2, Send } from "lucide-react";
+import { useRef } from "react";
+import LiveCamera from '../components/LiveCamera';
+import { useVoiceSearch } from "@/features/useVoiceSearch";
+
+interface VoiceRecorderProps {
+  onVoiceSuccess?: (data: { location: string; destination: string }) => void;
+}
+
+const VoiceRecorder = ({ onVoiceSuccess }: VoiceRecorderProps) => {
   const audioBlobRef = useRef<Blob | null>(null);
-  const [loading, setLoading] = useState(false); // حالة التحميل
+  const { sendVoice, isSendingVoice } = useVoiceSearch();
 
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({
@@ -18,26 +24,34 @@ const VoiceRecorder = () => {
     const blob = audioBlobRef.current;
     if (!blob) return;
 
-    setLoading(true); // ابدأ التحميل
-    
-    try {
-      const formData = new FormData();
-      formData.append("audio", blob, "recording.wav");
-      
-      const response = await fetch("http://...", {
-        method: "POST",
-        body: formData,
-      });
+    sendVoice(blob, {
+      onSuccess: (data) => {
+        console.log("Success:", data);
+        clearBlobUrl();
+        audioBlobRef.current = null;
+        
+        if (onVoiceSuccess && data) {
+          let parsedInnerData = null;
+          try {
+            // The AI backend returns the payload as a JSON string inside data.data
+            if (typeof data.data === "string") {
+              parsedInnerData = JSON.parse(data.data);
+            } else if (data.data && typeof data.data === "object") {
+              parsedInnerData = data.data;
+            }
+          } catch (e) {
+            console.error("Failed to parse inner data string", e);
+          }
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Success:", result);
+          const sourceData = parsedInnerData || data;
+
+          onVoiceSuccess({
+            location: sourceData.origin || sourceData.location || sourceData.from || "",
+            destination: sourceData.destination || sourceData.to || "",
+          });
+        }
       }
-    } catch (error) {
-      console.error("Upload Error:", error);
-    } finally {
-      setLoading(false);
-    }
+    });
   }
 
   return (
@@ -61,7 +75,7 @@ const VoiceRecorder = () => {
           <div className="dev flex flex-wrap">
               <button
               onClick={startRecording}
-              disabled={loading}
+              disabled={isSendingVoice}
               className="p-2 bg-green-50 hover:bg-green-100 text-green-600 rounded-full transition-colors disabled:opacity-50"
               title="Start Recording"
             >
@@ -84,15 +98,15 @@ const VoiceRecorder = () => {
           {mediaBlobUrl && !isRecording && (
             <button
               onClick={handleSubmit}
-              disabled={loading}
+              disabled={isSendingVoice}
               className="flex items-center gap-1 p-2 px-3 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-full transition-all shadow-sm active:scale-95 disabled:bg-gray-400"
             >
-              {loading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-              {loading ? "Sending..." : "Send"}
+              {isSendingVoice ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+              {isSendingVoice ? "Sending..." : "Send"}
             </button>
           )}
 
-          {mediaBlobUrl && !isRecording && !loading && (
+          {mediaBlobUrl && !isRecording && !isSendingVoice && (
             <button
               onClick={() => { clearBlobUrl(); audioBlobRef.current = null; }}
               className="p-2 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full transition-colors"

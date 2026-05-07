@@ -170,7 +170,12 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
       <div className="search-input flex justify-center items-center w-full mt-10 px-6">
         <div className="w-full max-w-6xl">
           <Card className="bg-white border border-gray-200 rounded-2xl transition-all duration-300">
-            <VoiceRecorder />
+            <VoiceRecorder 
+              onVoiceSuccess={(data) => {
+                if (data.location) setFrom(data.location);
+                if (data.destination) setTo(data.destination);
+              }}
+            />
             
 
             <CardContent className="p-6 pb-0">
