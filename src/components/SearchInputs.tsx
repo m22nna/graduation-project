@@ -243,7 +243,7 @@ export default function SearchInputs({ setSearchParams }: SearchInputsProps) {
                 from={from}
                 to={to}
                 userCoords={coordinates}
-                disabled={disabled}
+                disabled={disabled || isRouteLoading}
                 isLoading={isLoading}
                 setSearchParams={setSearchParams}
               />

@@ -46,7 +46,8 @@ export default function OpenMapButton({
   isLoading,
   setSearchParams,
 }: OpenMapButtonProps) {
-  const loading = isLoading || disabled;
+  const [isSearching, setIsSearching] = React.useState(false);
+  const loading = isLoading || disabled || isSearching;
 
 
   // Auto search logic
@@ -164,10 +165,12 @@ export default function OpenMapButton({
 
   //////////////
   async function handleSearch() {
-    const [posCoords, distCoords] = await Promise.all([
-      reverseGeocoding(from),
-      reverseGeocoding(to)
-    ]);
+    setIsSearching(true);
+    try {
+      const [posCoords, distCoords] = await Promise.all([
+        reverseGeocoding(from),
+        reverseGeocoding(to)
+      ]);
 
     console.log({
       userLocation: from,
@@ -186,6 +189,9 @@ export default function OpenMapButton({
       destinationLatitude: distCoords?.lat || 0,
       destinationLongitude: distCoords?.lon || 0,
     });
+    } finally {
+      setIsSearching(false);
+    }
   }
 
   function openGoogleMaps(
@@ -218,7 +224,7 @@ export default function OpenMapButton({
       >
         🔍
         <span>
-          {isLoading === true ? (
+          {isLoading === true || isSearching ? (
             <div className="flex gap-2">
               <LoadingSpinner /> <p>Loading...</p>
             </div>
