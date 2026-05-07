@@ -8,14 +8,22 @@ import {
     ChevronLeft,
     Copy,
     Check,
+    Train,
 } from "lucide-react";
 import type { TransGuideRoute, RouteDetail } from "../services/routesApi";
 
-function TransItem({ route, destination }: { route: TransGuideRoute; destination?: string }) {
+function TransItem({
+    route,
+    destination,
+}: {
+    route: TransGuideRoute;
+    destination?: string;
+}) {
     const [copied, setCopied] = useState(false);
     const totalTime = route.routeDetails?.[0]?.averageTimeInMinutes || 0;
     const totalPrice = route.routeDetails?.reduce(
-        (sum: number, detail: RouteDetail) => sum + (Number(detail.ticketPrice) || 0),
+        (sum: number, detail: RouteDetail) =>
+            sum + (Number(detail.ticketPrice) || 0),
         0,
     );
 
@@ -32,8 +40,12 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
 
     const handleCopy = (e: React.MouseEvent) => {
         e.stopPropagation();
-        const steps = route.routeDetails.map((d: any) => d.routeName).join(' ثم ');
-        navigator.clipboard.writeText(`مساري: ركوب ${steps} | التكلفة: ${totalPrice > 0 ? totalPrice + ' جنيه' : 'مجاناً'} | الوقت: ${formatTime(totalTime)}`);
+        const steps = route.routeDetails
+            .map((d: any) => d.routeName)
+            .join(" ثم ");
+        navigator.clipboard.writeText(
+            `مساري: ركوب ${steps} | التكلفة: ${totalPrice > 0 ? totalPrice + " جنيه" : "مجاناً"} | الوقت: ${formatTime(totalTime)}`,
+        );
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -46,8 +58,6 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
             {/* Glossy Top Background Effect */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-orange-400/5 rounded-full blur-3xl -z-10 group-hover:bg-orange-400/10 transition-colors duration-500"></div>
 
- 
-
             {/* Header: Green Chips & Type */}
             <div className="flex justify-between items-start gap-4 flex-wrap z-10">
                 <div className="flex flex-col gap-2.5">
@@ -57,29 +67,45 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
 
                     {/* أسماء الخطوط بالأخضر وبالعرض */}
                     <div className="flex flex-wrap items-center gap-1.5">
-                        {routeNames.map((name: string, i: number) => (
-                            <div key={`route-chip-${name}-${i}`} className="flex items-center gap-1.5">
-                                <div className="bg-gradient-to-tr from-emerald-500 to-emerald-400 text-white px-4 py-1.5 rounded-xl text-[12px] font-black shadow-md shadow-emerald-500/20 ring-1 ring-white/20">
-                                    {name}
+                        {routeNames.map((name: string, i: number) => {
+                            const isMetro = name.includes("الخط") || name.includes("مترو");
+                            const TransportIcon = isMetro ? Train : Bus;
+                            const label = isMetro ? "مترو" : "باص";
+
+                            return (
+                                <div
+                                    key={`route-chip-${name}-${i}`}
+                                    className="flex items-center gap-1.5"
+                                >
+                                    <div className="flex items-center gap-1.5 bg-gradient-to-tr from-emerald-500 to-emerald-400 text-white px-3 py-1.5 rounded-xl text-[12px] font-black shadow-md shadow-emerald-500/20 ring-1 ring-white/20">
+                                        <TransportIcon className="w-3.5 h-3.5 opacity-90" />
+                                        <span className="opacity-90">{label}</span>
+                                        <div className="w-[1px] h-3 bg-white/30 mx-0.5"></div>
+                                        <span>{name}</span>
+                                    </div>
+                                    {i < routeNames.length - 1 && (
+                                        <ChevronLeft className="w-4 h-4 text-orange-400/80" />
+                                    )}
                                 </div>
-                                {i < routeNames.length - 1 && (
-                                    <ChevronLeft className="w-4 h-4 text-orange-400/80" />
-                                )}
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                     {/* Copy Button */}
-                    <button 
+                    <button
                         onClick={handleCopy}
                         className="p-2.5 bg-white/80 hover:bg-emerald-50 hover:border-emerald-200 rounded-xl border border-gray-200 text-gray-400 hover:text-emerald-600 transition-all shadow-sm hover:shadow-md flex items-center justify-center h-full"
                         title="نسخ المسار"
                     >
-                        {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                        {copied ? (
+                            <Check className="w-4 h-4 text-emerald-600" />
+                        ) : (
+                            <Copy className="w-4 h-4" />
+                        )}
                     </button>
-                    
+
                     {/* نوع الرحلة: خط أصغر ومريح */}
                     <div className="flex items-center justify-center text-[13px] font-black tracking-wide text-emerald-700 bg-emerald-50/80 px-4 py-2.5 rounded-xl border border-emerald-100/80 shadow-sm whitespace-nowrap h-full">
                         {route.routeType === "Direct" ||
@@ -102,8 +128,16 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                             الوقت الإجمالي
                         </span>
                         <div className="flex items-baseline gap-1">
-                            <span className={totalTime >= 60 ? "text-[13px] font-black text-gray-800" : "text-[16px] font-black text-gray-800"}>
-                                {totalTime >= 60 ? formatTime(totalTime) : totalTime}
+                            <span
+                                className={
+                                    totalTime >= 60
+                                        ? "text-[13px] font-black text-gray-800"
+                                        : "text-[16px] font-black text-gray-800"
+                                }
+                            >
+                                {totalTime >= 60
+                                    ? formatTime(totalTime)
+                                    : totalTime}
                             </span>
                             {totalTime < 60 && (
                                 <span className="text-[11px] font-bold text-gray-500">
@@ -127,7 +161,13 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                             التكلفة
                         </span>
                         <div className="flex items-baseline gap-1">
-                            <span className={totalPrice === 0 ? "text-[12px] px-2 py-0.5 mt-0.5 bg-emerald-50 text-emerald-600 rounded-md font-black ring-1 ring-emerald-200" : "text-[16px] font-black text-gray-800"}>
+                            <span
+                                className={
+                                    totalPrice === 0
+                                        ? "text-[12px] px-2 py-0.5 mt-0.5 bg-emerald-50 text-emerald-600 rounded-md font-black ring-1 ring-emerald-200"
+                                        : "text-[16px] font-black text-gray-800"
+                                }
+                            >
                                 {totalPrice === 0 ? "مجاناً" : totalPrice}
                             </span>
                             {totalPrice > 0 && (
@@ -161,7 +201,12 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                 </div>
 
                 {/* Steps */}
-                {route.routeDetails?.map((detail: RouteDetail, idx: number) => (
+                {route.routeDetails?.map((detail: RouteDetail, idx: number) => {
+                    const isMetro = detail.routeName.includes("الخط") || detail.routeName.includes("مترو");
+                    const TransportIcon = isMetro ? Train : Bus;
+                    const transportLabel = isMetro ? "مترو" : "باص";
+
+                    return (
                     <div
                         key={`step-${detail.routeName}-${idx}`}
                         className="flex flex-col gap-5 mr-[12px] pr-7 relative"
@@ -172,11 +217,11 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                             <div className="flex items-center gap-3 w-full bg-white px-4 py-2.5 rounded-xl border border-gray-100 shadow-sm hover:border-orange-200 hover:shadow-orange-100/50 hover:shadow-md transition-all duration-300 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-1.5 h-full bg-orange-400/90"></div>
                                 <div className="bg-orange-50 p-2 rounded-lg text-orange-500 group-hover/ride:bg-orange-500 group-hover/ride:text-white transition-colors duration-300">
-                                    <Bus className="w-4 h-4 transform rtl:-scale-x-100" />
+                                    <TransportIcon className="w-4 h-4 transform rtl:-scale-x-100" />
                                 </div>
                                 <div className="flex items-center gap-2 text-right w-full">
                                     <span className="font-bold text-gray-500 text-[12px]">
-                                        هتركب:
+                                        هتركب {transportLabel}:
                                     </span>
                                     <span className="font-extrabold text-orange-600 text-[13px]">
                                         {detail.routeName}
@@ -203,7 +248,8 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                             </div>
                         )}
                     </div>
-                ))}
+                    );
+                })}
 
                 {/* Arrival */}
                 <div className="flex items-center gap-4 relative z-10 group/step mt-1">
@@ -215,7 +261,7 @@ function TransItem({ route, destination }: { route: TransGuideRoute; destination
                             هتنزل
                         </span>
                         <span className="font-extrabold text-gray-800 text-[14px]">
-                            في {destination || 'وجهتك'}
+                            في {destination || "وجهتك"}
                         </span>
                     </div>
                 </div>
