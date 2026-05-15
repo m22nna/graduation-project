@@ -24,7 +24,7 @@ const Register: React.FC = () => {
    
    try{
     setLoading(true);
-   let {data} = await axios.post(`http://transguideapi.runasp.net/api/Auth/signup`, values)
+   let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/signup`, values)
     //console.log(data);
     toast.success(data.message);
     //setLoading(false);

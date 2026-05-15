@@ -1,0 +1,1804 @@
+{
+    "info": {
+        "name": "Graduation Project",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Routes",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get All Routes",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/Location/GetAllRoutes",
+                            "path": [
+                                "api",
+                                "Location",
+                                "GetAllRoutes"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [
+                                {
+                                    "key": "pageIndex",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "25",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Serach Route",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"userLocation\": \"التجمم الخامس\",\r\n  \"userLatitude\": 30.0173,\r\n  \"userLongitude\": 31.5015,\r\n  \"destination\": \" \",\r\n  \"destinationLatitude\": 30.0444,\r\n  \"destinationLongitude\": 31.2357\r\n\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/Location/SearchRoutes",
+                            "path": [
+                                "api",
+                                "Location",
+                                "SearchRoutes"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [
+                                {
+                                    "key": "pageIndex",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "History",
+            "description": "",
+            "item": [
+                {
+                    "name": "MyHistory",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIzIiwiZW1haWwiOiJ1c2VyMDBAZXhhbXBsZS5jb20iLCJGdWxsTmFtZSI6InN0cmluZyIsIm5iZiI6MTc3MzU4NTM1OSwiZXhwIjoxNzczNTg4OTU5LCJpYXQiOjE3NzM1ODUzNTksImlzcyI6IlRyYW5zaUd1aWRlIiwiYXVkIjoiVHJhbnNpR3VpZGVVc2VycyJ9.tz20vcQFIs1XJ82r0LeoHs2Bkk5kKYwbolMdSsJGsoE",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/History/MyHistory",
+                            "path": [
+                                "api",
+                                "History",
+                                "MyHistory"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "DeleteHistory",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIzIiwiZW1haWwiOiJ1c2VyMDBAZXhhbXBsZS5jb20iLCJGdWxsTmFtZSI6InN0cmluZyIsIm5iZiI6MTc3MzQ5MjI5OSwiZXhwIjoxNzczNDk1ODk5LCJpYXQiOjE3NzM0OTIyOTksImlzcyI6IlRyYW5zaUd1aWRlIiwiYXVkIjoiVHJhbnNpR3VpZGVVc2VycyJ9.PJ3k-GSmIK5RB_JH6t8iK_MWNc6kbiQ_9XNVYV8x368",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/History/DeleteHisrory3",
+                            "path": [
+                                "api",
+                                "History",
+                                "DeleteHisrory3"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete Trip",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/History/DeleteTrip",
+                            "path": [
+                                "api",
+                                "History",
+                                "DeleteTrip"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get History Count",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/History/GetTripsCount",
+                            "path": [
+                                "api",
+                                "History",
+                                "GetTripsCount"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "FeedBack",
+            "description": "",
+            "item": [
+                {
+                    "name": "Create Feedback",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"fullName\": \"أحمد محمد\",\r\n  \"email\": \"ahmed.mohamed@example.com\",\r\n  \"phoneNumber\": \"01012345678\",\r\n  \"reason\": \"تقييم الرحلة\",\r\n  \"timeSlot\": \"2026-03-14 10:00\",\r\n  \"message\": \"كانت الرحلة ممتازة\",\r\n  \"comment\": \"السائق محترم والمواصلات نظيفة\",\r\n  \"ratingId\": 5,\r\n  \"userProfileId\": 3,\r\n  \"routeId\": 12,\r\n  \"tripStatusId\": 2\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/UserFeedback",
+                            "path": [
+                                "api",
+                                "UserFeedback"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get FeedbackCount",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/UserFeedbacks/GetFeedbacksCount",
+                            "path": [
+                                "api",
+                                "UserFeedbacks",
+                                "GetFeedbacksCount"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "GetAllFeedbacks",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/UserFeedbacks/GetAllFeedbacks",
+                            "path": [
+                                "api",
+                                "UserFeedbacks",
+                                "GetAllFeedbacks"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Authantication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Sign Up",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"string\",\r\n  \"fullName\": \"string\",\r\n  \"country\": \"string\",\r\n  \"address\": \"string\",\r\n  \"currentLatitude\": 0,\r\n  \"currentLongitude\": 0\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "https//transguideapi.runasp.net/api/Auth/signup",
+                            "path": [
+                                "https",
+                                "transguideapi.runasp.net",
+                                "api",
+                                "Auth",
+                                "signup"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Sign in",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"user00@example.com\",\r\n  \"password\": \"string00\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "https://transguideapi.runasp.net/api/Auth/signin",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "signin"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Login With Google",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"idToken\": \"string\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Auth/google-login",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "google-login"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update User Data",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"fullName\": \"string\",\r\n  \"country\": \"string\",\r\n  \"address\": \"string\"\r\n \r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Auth/update-logged-user-data",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "update-logged-user-data"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update User Password",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"currentPassword\": \"string\",\r\n  \"newPassword\": \"string\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/pi/Auth/update-logged-user-password",
+                            "path": [
+                                "pi",
+                                "Auth",
+                                "update-logged-user-password"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Forget Password",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"user@example.com\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Auth/forgot-password",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "forgot-password"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Reset Code",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"code\": \"string\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Auth/verify-reset-code",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "verify-reset-code"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get users Count",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/Auth/UsersCount",
+                            "path": [
+                                "api",
+                                "Auth",
+                                "UsersCount"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Notification",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get User Notifications",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/pi/Notifications",
+                            "path": [
+                                "pi",
+                                "Notifications"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [
+                                {
+                                    "key": "userId",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Create Notification",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"userId\": 0,\r\n  \"message\": \"string\",\r\n  \"notificationType\": \"string\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Notifications",
+                            "path": [
+                                "api",
+                                "Notifications"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get Unread Notications",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Notifications/unread",
+                            "path": [
+                                "api",
+                                "Notifications",
+                                "unread"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get Unread Notification Count",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/pi/Notifications/unread/count",
+                            "path": [
+                                "pi",
+                                "Notifications",
+                                "unread",
+                                "count"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Mark As Read All",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Notifications/read-all",
+                            "path": [
+                                "api",
+                                "Notifications",
+                                "read-all"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [
+                                {
+                                    "key": "userId",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Mark Reading For Specific Notification",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Notifications/1/read",
+                            "path": [
+                                "api",
+                                "Notifications",
+                                "1",
+                                "read"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete Notification",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "http://transguideapi.runasp.net/api/Notifications/1",
+                            "path": [
+                                "api",
+                                "Notifications",
+                                "1"
+                            ],
+                            "host": [
+                                "transguideapi",
+                                "runasp",
+                                "net"
+                            ],
+                            "protocol": "http",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Athorization",
+            "description": "",
+            "item": [
+                {
+                    "name": "AddRole",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"roleName\": \"superadmin\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/AddRole",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "AddRole"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "EditRole",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"id\": 3,\r\n  \"name\": \"SuperAdmin\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/EditRole",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "EditRole"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "DeleteRole",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/DeleteRole",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "DeleteRole"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "GetAllRoles",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/GetAllRoles",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "GetAllRoles"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "GetById",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/GetRole",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "GetRole"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "UpdateUserRole",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiWW9tbmFAcHJvamVjdGFkbWluLmNvbSIsIkZ1bGxOYW1lIjoiWW9tbmEgTW9oYW1lZCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc2NTk0NTEzLCJpc3MiOiJUcmFuc2lHdWlkZSIsImF1ZCI6IlRyYW5zaUd1aWRlVXNlcnMifQ.Dizm-Qy2pmt4Br_hzwZ4qPSvlVf60uMOFNSHfttLB9s",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"userId\": 5,\r\n  \"roles\": [\r\n    \"Admin\"\r\n  ]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/Authorization/UpdateUserRoles",
+                            "path": [
+                                "api",
+                                "Authorization",
+                                "UpdateUserRoles"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Ai",
+            "description": "",
+            "item": [
+                {
+                    "name": "Send Voice",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "value": "file://C:\\Users\\mahmo\\Downloads\\ElevenLabs_2026-04-28T17_25_40_Roger - Laid-Back, Casual, Resonant_pre_sp100_s50_sb75_se0_b_m2.wav",
+                                    "type": "file",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/Voice/SendVoice",
+                            "path": [
+                                "api",
+                                "Voice",
+                                "SendVoice"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Admin Dashoard",
+            "description": "",
+            "item": [
+                {
+                    "name": "Create Route",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"name\": \"string\",\r\n  \"startPoint\": \"string\",\r\n  \"endPoint\": \"string\",\r\n  \"region\": \"string\",\r\n  \"description\": \"string\",\r\n  \"ticketPrice\": 0,\r\n  \"averageTimeInMinutes\": 0,\r\n  \"routeStatusId\": 0\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/CreateRoute",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "CreateRoute"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "UpdateRoute",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{   \"id\": 0,   \"name\": \"string\",   \"startPoint\": \"string\",   \"endPoint\": \"string\",   \"region\": \"string\",   \"description\": \"string\",   \"ticketPrice\": 0,   \"averageTimeInMinutes\": 0,   \"routeStatusId\": 0 }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/UpdateRoute",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "UpdateRoute"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete Route",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/DeleteRoute",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "DeleteRoute"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Create Station",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{   \"name\": \"string\",   \"latitude\": 0,   \"longitude\": 0 }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/CreateStation",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "CreateStation"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update Route Status",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/UpdateRouteStatus",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "UpdateRouteStatus"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "status",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "update station",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"string\",\r\n  \"latitude\": 0,\r\n  \"longitude\": 0\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/UpdateStation",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "UpdateStation"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete Station",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/DeleteStation",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "DeleteStation"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get Station By Id",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/AdminDashboard/GetStation",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "GetStation"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get All Stations",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "api/AdminDashboard/GetAllStations",
+                            "path": [
+                                "api",
+                                "AdminDashboard",
+                                "GetAllStations"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "pageIndex",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}

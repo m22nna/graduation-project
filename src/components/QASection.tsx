@@ -11,10 +11,10 @@ const FAQItem = ({ q, a }: FAQItemProps) => {
     <div className="border-b py-4">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center  flex-row-reverse text-right"
+        className="w-full flex justify-between items-center  flex-row-reverse text-right bg-transparent"
       >
-        <span className="font-semibold text-lg" style={{color:"var(--main-internal-color)"}}>{q}</span>
-        <span className="text-2xl" style={{color:"var(--main-internal-color)"}}>{open ? "−" : "+"}</span>
+        <span className="font-semibold text-lg text-white bg-[var(--main-internal-color)] px-3 py-1 rounded-lg" >{q}</span>
+        <span className="text-2xl text-[var(--main-internal-color)]" >{open ? "−" : "+"}</span>
       </button>
 
       {open && <p className="mt-2 text-base text-right" >{a}</p>}
@@ -29,7 +29,7 @@ const FAQSection = () => {
     { q: "هل أقدر أشوف تفاصيل عن الرحلة؟", a: "طبعا تقدر تشوف كل التفاصيل المتاحة من جزء المسارات من الجزء اللى فوق" },
     { q: "هل البيانات دقيقة؟", a: "طبعا دقيقة باكبر قدر ممكن حسب المعلومات المتاحة وبنحاول نحدثها باستمرار" },
     { q: "طيب ايه الحاجة اللى بتميزنا؟", a: "النظام بتاعنا يقدر يساعد كمان اصحاب الصم والبكم" },
-    
+    { q: "طيب ايه انواع المواصلات المتاحة؟", a: "متاح باصات مواصلات مصر وكمان متاح المترو" },
   ];
 
   return (

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://transguideapi.runasp.net/api/History";
+const BASE_URL = "https://transguideapi.runasp.net/api/History";
 
 export async function fetchHistory(token: string) {
   try {

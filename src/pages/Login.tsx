@@ -10,8 +10,8 @@ import logo from '../assets/logo-nobg.png'
 interface LoginFormValues {
   email: string;
   password: string;  
-  currentLatitude: number,
-  currentLongitude: number
+  // currentLatitude: number,
+  // currentLongitude: number
   
 }
 
@@ -24,18 +24,21 @@ const Login: React.FC = () => {
    
    try{
     setLoading(true);
-   let {data} = await axios.post(`http://transguideapi.runasp.net/api/Auth/signin`, values)
+   let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/signin`, values)
     //console.log(data);
     toast.success("success");
     //setLoading(false);
     navigator("/");
     localStorage.setItem('userToken' ,data.token);
     localStorage.setItem('userId' , data.userId);
+    console.log(data.token);
+    //localStorage.setItem("role", "Admin");
     setUserToken(data.token);
     setUserId(data.userId);
   
    }catch(error:any){
-    toast.error(error.response?.data?.message);
+    console.error("Login error:", error.response);
+    toast.error(error.response?.data?.message || error.response?.data?.title || "Invalid email or password");
     setLoading(false);
    }
   }
@@ -56,8 +59,8 @@ const Login: React.FC = () => {
     initialValues: {
       email: "",
       password: "",      
-      currentLatitude: 0,
-      currentLongitude: 0,
+      // currentLatitude: 0,
+      // currentLongitude: 0,
       
     },
     validationSchema,
