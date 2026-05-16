@@ -30,6 +30,8 @@ const queryClient = new QueryClient();
 
 import UpdateData from "./pages/UpdateData";
 import UpdatePassword from "./pages/UpdatePssword";
+import NewAdmin from "./pages/NewAdmin";
+import RoleDetails from "./pages/RoleDetails";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <Dashboard />,
       },
+      {
+        path: "dashboard/role/:id",
+        element: <RoleDetails />,
+      },
+      {
+        path: "newadmin",
+        element: <NewAdmin />,
+      },
     ],
   },
   {
@@ -75,19 +85,6 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-// <<<<<<< Updated upstream
-//         path: "forgetpassword",
-//         element: <ForgetPassword />,
-//       },
-//       {
-//         path: "verifycode",
-//         element: <VerifyCode />,
-//       },
-//       {
-//         path: "resetpassword",
-//         element: <ResetPassword />,
-//       },
-// =======
                  path: "/forgetpassword",
                  element: <ForgetPassword/>,
              },
@@ -107,8 +104,6 @@ const router = createBrowserRouter([
                  path: "/updatepassword",
                  element: <UpdatePassword />,
              },
-
-
     ],
   },
 ]);
