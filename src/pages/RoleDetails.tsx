@@ -4,6 +4,8 @@ import { UserContext } from "@/context/UserContext";
 import { useRoleDetails, useEditRole, useDeleteRole } from "@/features/useDashboard";
 //import { toast } from "react-hot-toast";
 
+//import { toast } from "react-hot-toast";
+
 const RoleDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
