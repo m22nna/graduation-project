@@ -46,11 +46,11 @@ export const DashboardUsersTable: React.FC<DashboardUsersTableProps> = ({ users,
 
         <tbody className="divide-y divide-gray-200">
           {users.map((u: any, index: number) => {
-            const userRoles = Array.isArray(u.roles)
-              ? u.roles.map((r: any) => (typeof r === "string" ? r : r.name || r.roleName || ""))
-              : typeof u.roles === "string"
-              ? [u.roles]
-              : [];
+            // const userRoles = Array.isArray(u.roles)
+            //   ? u.roles.map((r: any) => (typeof r === "string" ? r : r.name || r.roleName || ""))
+            //   : typeof u.roles === "string"
+            //   ? [u.roles]
+            //   : [];
 
             return (
               <tr

@@ -11,8 +11,7 @@ import {
 
 import {
   HiArrowSmRight,
-  HiChartPie,
-  HiInbox,
+  HiChartPie,  
   HiUser,
   HiViewBoards,
   HiMenu,

@@ -86,7 +86,7 @@ const UserDetails: React.FC = () => {
           onClick={() => navigate("/dashboard")}
           className="mb-6 text-[var(--main-internal-color)] text-lg font-bold bg-white transition px-5 py-2.5 rounded-3xl hover:opacity-90 shadow-md flex items-center gap-2"
         >
-          ← العودة للوحة التحكم
+          رجوع
         </button>
 
         <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 text-[var(--main-internal-color)] text-right font-sans">
@@ -146,7 +146,7 @@ const UserDetails: React.FC = () => {
                 disabled={updateUserRolesMutation.isPending}
                 className="flex-1 bg-[var(--main-internal-color)] hover:bg-[var(--main-hover-color)] text-white py-3 rounded-xl font-bold text-lg transition disabled:opacity-50"
               >
-                {updateUserRolesMutation.isPending ? "جاري الحفظ..." : "حفظ التغييرات"}
+                {updateUserRolesMutation.isPending ? "... جاري الحفظ" : "حفظ التغييرات"}
               </button>
 
               <button
