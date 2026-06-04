@@ -151,14 +151,7 @@ const AppSidebar: FC = () => {
                 History
               </SidebarItem>
 
-              <SidebarItem
-                href="#"
-                icon={HiInbox}
-                // label="3"
-                className="my-5"
-              >
-                Inbox
-              </SidebarItem>
+              
               
               
               

@@ -59,6 +59,15 @@ export async function deleteRole(roleId: number, token: string) {
 }
 
 /**
+ * Get All users (Dashboard Data)
+ */
+export async function fetchAllUsers(token: string) {
+  const response = await axios.get(`${BASE_URL}/GetAllUsres`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+}
+/**
  * Update User Roles
  */
 export async function updateUserRoles(

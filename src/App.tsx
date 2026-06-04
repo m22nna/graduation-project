@@ -32,6 +32,12 @@ import UpdateData from "./pages/UpdateData";
 import UpdatePassword from "./pages/UpdatePssword";
 import NewAdmin from "./pages/NewAdmin";
 import RoleDetails from "./pages/RoleDetails";
+import Roles from "./pages/Roles";
+import Stations from "./pages/Stations";
+import StationDetails from "./pages/StationDetails";
+import UserDetails from "./pages/UserDetails";
+import Routes from "./pages/Routes";
+import RouteDetails from "./pages/RouteDetails";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +69,32 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "dashboard/roles",
+        element: <Roles />,
+      },
+      {
         path: "dashboard/role/:id",
         element: <RoleDetails />,
+      },
+      {
+        path: "dashboard/stations",
+        element: <Stations />,
+      },
+      {
+        path: "dashboard/station/:id",
+        element: <StationDetails />,
+      },
+      {
+        path: "dashboard/routes",
+        element: <Routes />,
+      },
+      {
+        path: "dashboard/route/:id",
+        element: <RouteDetails />,
+      },
+      {
+        path: "dashboard/user/:id",
+        element: <UserDetails />,
       },
       {
         path: "newadmin",
@@ -121,7 +151,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <UserContextProvider>
-        <GoogleOAuthProvider clientId="11202583079-lia5e3fp87knod8accrqlvnh7u7ldcl6.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="498310354645-jisalqm98knlr98ggsk5cir2dva3pnh7.apps.googleusercontent.com">
           {/* <div className="container">
             <RouterProvider router={router} />
           </div> */}

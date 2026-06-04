@@ -12,15 +12,21 @@ export default defineConfig({
   build: {
     outDir: "dist"
   }
-  // ,
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'https://transguideapi.runasp.net',
-  //       changeOrigin: true,
-  //       secure: false,
-  //     }
-  //   }
-  // }
+  ,
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://transguideapi.runasp.net',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/signHub': {
+        target: 'https://transguideapi.runasp.net',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      }
+    }
+  }
 })
 

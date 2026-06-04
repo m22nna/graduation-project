@@ -82,7 +82,11 @@ const VoiceRecorder = ({ onVoiceSuccess }: VoiceRecorderProps) => {
               <Mic size={18} />
               
             </button>
-            <LiveCamera/>
+            <LiveCamera onTranslationSuccess={(word) => {
+              if (onVoiceSuccess) {
+                onVoiceSuccess({ location: "", destination: word });
+              }
+            }}/>
           </div>
             
           ) : (

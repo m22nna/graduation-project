@@ -48,7 +48,7 @@ const RoleDetails: React.FC = () => {
   if (error) return <div className="text-center py-20 text-white text-3xl">حدث خطأ أثناء تحميل البيانات</div>;
 
   return (
-    <div className="container mx-auto p-5 text-white">     
+    <div className="container mx-auto p-5 text-white">
 
       <div className="bg-white rounded-3xl p-8 max-w-2xl mx-auto shadow-2xl border border-gray-700">
         <div className="flex items-center gap-6 mb-8">
@@ -81,7 +81,7 @@ const RoleDetails: React.FC = () => {
             >
               {editRoleMutation.isPending ? "جاري الحفظ..." : "حفظ التغييرات"}
             </button>
-            
+
             {/* زرار إضافة أدمن يظهر فقط لليوزر العادي */}
             {(role?.name?.toLowerCase() === "user" || role?.roleName?.toLowerCase() === "user") && (
               <button
@@ -89,7 +89,7 @@ const RoleDetails: React.FC = () => {
                 onClick={() => navigate("/newadmin")}
                 className="flex-1 min-w-[150px] bg-[var(--main-internal-color)] hover:bg-[var(--main-hover-color)] py-3 rounded-xl font-bold text-lg transition"
               >
-                 إضافة كـ أدمن
+                إضافة كـ أدمن
               </button>
             )}
 
@@ -105,7 +105,7 @@ const RoleDetails: React.FC = () => {
         </form>
       </div>
 
-      <button 
+      <button
         onClick={() => navigate("/dashboard")}
         className="mt-6 text-[var(--main-internal-color)] text-lg font-bold bg-white transition p-3 rounded-3xl"
       >

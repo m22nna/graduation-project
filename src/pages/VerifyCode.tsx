@@ -21,11 +21,11 @@ const VerifyCode: React.FC = () => {
    
    try{
     setLoading(true);
-   let {data} = await axios.post(`http://transguideapi.runasp.net/api/Auth/verify-reset-code`, values)
+   let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/confirm-reset-code`, values)
     console.log(data);
     toast.success(data.message);
     //setLoading(false);
-    navigator("/login");
+    //navigator("/login");
     // localStorage.setItem('userToken' ,data.token);
     // localStorage.setItem('userId' , data.userId);
     // setUserToken(data.token);
@@ -117,6 +117,8 @@ return <>
                  <i className="fas fa-spinner fa-spin "></i>
                 </button> :
                   <button 
+                  onClick={()=>navigator("/resetpassword")}
+
                   type="submit"                 
                   className="mx-auto block bg-[var(--main-internal-color)] text-white text-lg  py-3 px-10 rounded-3xl hover:bg-[var(--main-hover-color)] transition"
                 >

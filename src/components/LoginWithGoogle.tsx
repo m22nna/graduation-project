@@ -17,15 +17,22 @@ const LoginWithGoogle: React.FC = () => {
           toast.error("Google Login Failed");
           return;  
         }
-       const {data} = await axios.post (`http://transguideapi.runasp.net/api/Auth/google-login`,{ idToken : credentialResponse.credential}) ;
+       const {data} = await axios.post (`https://transguideapi.runasp.net/api/Auth/google-login`,{ idToken : credentialResponse.credential}) ;
        setUserToken(data.idToken);
         toast.success("Logged in successfully");
-        navigate('/');
+        navigate('/');}
 
-    }catch(error :any){
- toast.error(error.response?.data?.message || "Google login failed");
+//     }catch(error :any){
+//  toast.error(error.response?.data?.message || "Google login failed");
 
-    }
+//     }
+catch (error: any) {
+  console.log("Status:", error.response?.status);
+  console.log("Data:", error.response?.data);
+  console.log("Full Error:", error.response);
+
+  toast.error("Google login failed");
+}
  };
 
   return (

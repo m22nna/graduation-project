@@ -11,6 +11,7 @@ import {
   editRole,
   deleteRole,
   updateUserRoles,
+  fetchAllUsers,
 } from "../services/dashboardApi";
 
 // 1. Get All Roles
@@ -87,9 +88,19 @@ export function useUpdateUserRoles() {
       token: string;
     }) => updateUserRoles(userId, roles, token),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       toast.success("تم تحديث صلاحيات المستخدم بنجاح");
     },
     onError: () => toast.error("فشل تحديث صلاحيات المستخدم"),
+  });
+}
+
+// 7. Get All Users
+export function useAllUsers(token: string) {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => fetchAllUsers(token),
+    enabled: !!token,
   });
 }
