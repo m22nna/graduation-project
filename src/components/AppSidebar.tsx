@@ -148,9 +148,7 @@ const AppSidebar: FC = () => {
                 }}
               >
                 History
-              </SidebarItem>
-
-              
+              </SidebarItem>           
               
               
               

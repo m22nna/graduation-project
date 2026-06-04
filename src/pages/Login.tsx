@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     navigator("/");
     localStorage.setItem('userToken' ,data.token);
     localStorage.setItem('userId' , data.userId);
-    console.log(data.token);
+    //console.log(data.token);
     //localStorage.setItem("role", "Admin");
     setUserToken(data.token);
     setUserId(data.userId);

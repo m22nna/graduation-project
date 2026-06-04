@@ -26,7 +26,7 @@ export const DashboardUsersTable: React.FC<DashboardUsersTableProps> = ({ users,
   }
 
   return (
-    <div className="mt-12 border-t border-white pt-10">
+    <div className="mt-12 border-t border-white pt-10 overflow-x-auto">
       <div className="title w-fit mx-auto mb-10">
         <h2 className="text-2xl font-semibold mb-2 text-white">
           قائمة المستخدمين
@@ -34,7 +34,7 @@ export const DashboardUsersTable: React.FC<DashboardUsersTableProps> = ({ users,
         <hr style={{ color: "var(--main-hover-color)" }} />
       </div>
 
-      <table className="w-full border border-gray-700 rounded-2xl overflow-hidden shadow-xl bg-white text-[var(--main-internal-color)] text-lg">
+      <table className="w-full  border border-gray-700 rounded-2xl overflow-hidden shadow-xl bg-white text-[var(--main-internal-color)] text-lg">
         <thead className="bg-[var(--main-hover-color)] text-white font-bold">
           <tr>
             <th className="p-4 text-center">#</th>
