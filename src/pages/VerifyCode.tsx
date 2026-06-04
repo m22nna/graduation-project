@@ -90,7 +90,7 @@ return <>
                   Code
                 </label>
                 <input
-                  type="password"
+                  type="string"
                   name="code"
                   value={formik.values.code}
                   onChange={formik.handleChange}
