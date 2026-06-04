@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://transguideapi.runasp.net/api/:path*" },
+    { "source": "/signHub/:path*", "destination": "https://transguideapi.runasp.net/signHub/:path*" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
