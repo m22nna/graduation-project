@@ -21,7 +21,7 @@ const GetUserData: React.FC = () => {
         try {
             setLoading(true);
             console.log(values);
-            const { data } = await axios.post(
+             await axios.post(
                 `https://transguideapi.runasp.net/api/Auth/update-logged-user-data`,
                 values
             );

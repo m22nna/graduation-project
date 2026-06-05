@@ -4,8 +4,7 @@ import {
   Sidebar,
   SidebarItem,
   SidebarItemGroup,
-  SidebarItems,
-  SidebarCollapse,
+  SidebarItems,  
   Modal,
 } from "flowbite-react";
 
