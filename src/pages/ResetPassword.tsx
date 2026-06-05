@@ -25,11 +25,11 @@ const ResetPassword: React.FC = () => {
         values
       );
 
-      toast.success(data.message);
+      toast.success(data.message ||"تم تعيين كلمة مرور جديدة بنجاح");
       navigator("/login");
     } catch (error: any) {
       console.log("ERROR RESPONSE:", error.response?.data);
-      toast.error(error.response?.data?.message);
+      toast.error("حدث خطا");
       setLoading(false);
     }
   }

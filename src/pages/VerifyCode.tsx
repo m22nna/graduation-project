@@ -23,7 +23,7 @@ const VerifyCode: React.FC = () => {
     setLoading(true);
    let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/confirm-reset-code`, values)
     console.log(data);
-    toast.success(data.message);
+    toast.success("تم ادخال البيانات بنجاح");
     //setLoading(false);
     //navigator("/login");
     // localStorage.setItem('userToken' ,data.token);
@@ -32,7 +32,7 @@ const VerifyCode: React.FC = () => {
     // setUserId(data.userId);
   
    }catch(error:any){
-    toast.error(error.response?.data?.message);
+    toast.error("حدث خطا");
     setLoading(false);
    }}
 

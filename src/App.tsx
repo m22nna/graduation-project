@@ -28,7 +28,7 @@ import "./App.css";
 const queryClient = new QueryClient();
 
 
-import UpdateData from "./pages/UpdateData";
+
 import UpdatePassword from "./pages/UpdatePssword";
 import NewAdmin from "./pages/NewAdmin";
 import RoleDetails from "./pages/RoleDetails";
@@ -38,6 +38,7 @@ import StationDetails from "./pages/StationDetails";
 import UserDetails from "./pages/UserDetails";
 import Routes from "./pages/Routes";
 import RouteDetails from "./pages/RouteDetails";
+import GetUserData from "./pages/GetUserData";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,14 @@ const router = createBrowserRouter([
         path: "newadmin",
         element: <NewAdmin />,
       },
+      {
+        path: "getuserdata",
+        element: <GetUserData />,
+      },
+      {
+        path: "updatepassword",
+        element: <UpdatePassword />,
+      },
     ],
   },
   {
@@ -126,10 +135,7 @@ const router = createBrowserRouter([
                  path: "/resetpassword",
                  element: <ResetPassword />,
              },
-             {
-                 path: "/updatedata",
-                 element: <UpdateData />,
-             },
+             
              {
                  path: "/updatepassword",
                  element: <UpdatePassword />,

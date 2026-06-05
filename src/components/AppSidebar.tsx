@@ -148,19 +148,29 @@ const AppSidebar: FC = () => {
                 }}
               >
                 History
-              </SidebarItem>           
-              
+              </SidebarItem>  
+
+              <SidebarItem
+                icon={HiUser}
+                // label="Users"
+                className="my-5"
+                onClick={() => {navigate("/getuserdata")
+                  
+                }}
+              >
+               General Information
+              </SidebarItem>  
               
               
 
-              <SidebarCollapse
+              {/* <SidebarCollapse
                 icon={HiUser}
-                label="Users"
+                
                 className="my-5"
               >
                 <SidebarItem href="#" onClick={()=> navigate("/updatedata")}>Update User Data</SidebarItem>
                 <SidebarItem href="#" onClick={()=> navigate("/updatepassword")}>Update Password</SidebarItem>
-              </SidebarCollapse>
+              </SidebarCollapse> */}
 
               {/* Logout */}
               {userToken && (

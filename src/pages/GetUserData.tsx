@@ -6,53 +6,55 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 
-interface UpdatePasswordFormValues {
-    currentPassword: string;
-    newPassword: string;
-   
+interface ResetPasswordFormValues {
+    fullName: string;
+    country: string;
+    address: string;
 }
 
 
-const UpdatePassword: React.FC = () => {
+const GetUserData: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const navigator = useNavigate();
 
-    async function ResetPassword(values: UpdatePasswordFormValues) {
+    async function ResetPassword(values: ResetPasswordFormValues) {
         try {
             setLoading(true);
             console.log(values);
             const { data } = await axios.post(
-                `https://transguideapi.runasp.net/pi/Auth/update-logged-user-password`,
+                `https://transguideapi.runasp.net/api/Auth/update-logged-user-data`,
                 values
             );
 
-            toast.success(data.message ||"تمت العملية بنجاح");
-            navigator("/login");
+            toast.success("تمت العملية بنجاح");
+            navigator("/updatepassword");
         } catch (error: any) {
             console.log("ERROR RESPONSE:", error.response?.data);
-            toast.error("خطا غير معروف");
+            toast.error(error.response?.data?.message || "خطا غير معروف");
+           
             setLoading(false);
         }
     }
 
     const validationSchema = Yup.object({
-        currentPassword: Yup.string()
-            .required("currentPassword is required") ,
+        fullName: Yup.string()
+            .required("fullName is required") ,
            
 
-        newPassword: Yup.string()
-            .required("newPassword is required"),
+        country: Yup.string()
+            .required("country is required"),
         //.matches(/^[A-Z]\w{4,10}$/, "password is invalid ex: Ahmed123"),
 
-        
+        address: Yup.string()
+            .required("address is required"),
            
     });
 
-    const formik = useFormik<UpdatePasswordFormValues>({
+    const formik = useFormik<ResetPasswordFormValues>({
         initialValues: {
-            currentPassword: "",
-            newPassword: "",
-           
+            fullName: "",
+            country: "",
+            address: "",
         },
         validationSchema,
         onSubmit: ResetPassword,
@@ -65,47 +67,67 @@ const UpdatePassword: React.FC = () => {
                 className="text-[var(--main-internal-color)] body-font py-20 h-screen">
                 <div className="container px-5 py-24 bg-white rounded-3xl m-auto">
                     {/* <img src={logo} className="w-32 bg-[var(--main-internal-color)] rounded-full mx-auto p-1"/> */}
-                    <p className="text-[var(--main-internal-color)] text-center font-bold text-4xl">تحديث كلمة المرور</p>
+                    <p className="text-[var(--main-internal-color)] text-center font-bold text-4xl">المعلومات الشخصية</p>
                     <div className="bg-white rounded-3xl max-w-4xl mx-auto p-6 mt-4">
                         <div className="flex flex-wrap -m-2">
                             {/* name */}
                             <div className="p-2 w-full ">
                                 <label className="block text-sm font-medium text-[var(--main-internal-color)] mb-1 text-left ps-2">
-                                    currentPassword
+                                    Your Name
                                 </label>
-                                <input type="password" name="currentPassword" value={formik.values.currentPassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                                <input type="text" name="fullName" value={formik.values.fullName} onChange={formik.handleChange} onBlur={formik.handleBlur}
                                     className="w-full h-12 px-4 rounded-3xl border text-lg"/>
                             </div>
 
-                            {formik.errors.currentPassword && formik.touched.currentPassword && (
+                            {formik.errors.fullName && formik.touched.fullName && (
                                 <div className="w-full bg-green-300 p-3 rounded-2xl text-sm">
-                                    {formik.errors.currentPassword}
+                                    {formik.errors.fullName}
                                 </div>
                             )}
 
                             {/* country */}
                             <div className="p-2 w-full ">
                                 <label className="block text-sm font-medium text-[var(--main-internal-color)] mb-1 text-left ps-2">
-                                    newPassword
+                                    country
                                 </label>
                                 <input
-                                    type="password"
+                                    type="text"
                                     name="country"
-                                    value={formik.values.newPassword}
+                                    value={formik.values.country}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     className="w-full h-12 px-4 rounded-3xl border text-lg"
                                 />
                             </div>
 
-                            {formik.errors.newPassword && formik.touched.newPassword && (
+                            {formik.errors.country && formik.touched.country && (
                                 <div className="w-full bg-green-300 p-3 rounded-2xl text-sm">
-                                    {formik.errors.newPassword}
+                                    {formik.errors.country}
                                 </div>
                             )}
 
-                           
-                            
+                            {/* address */}
+                            <div className="p-2 w-full ">
+                                <label className="block text-sm font-medium text-[var(--main-internal-color)] mb-1 text-left ps-2">
+                                Address
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="address"   // ✅ FIXED
+                                    value={formik.values.address}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    className="w-full h-12 px-4 rounded-3xl border text-lg"
+                                />
+                            </div>
+
+                            {formik.errors.address &&
+                                formik.touched.address && (
+                                    <div className="w-full bg-green-300 p-3 rounded-2xl text-sm">
+                                        {formik.errors.address}
+                                    </div>
+                                )}
 
                             {/* Button */}
                             <div className="p-2 w-full mt-4">
@@ -134,10 +156,4 @@ const UpdatePassword: React.FC = () => {
 };
 
 
-export default UpdatePassword;
-
-
-
-
-
-
+export default GetUserData;

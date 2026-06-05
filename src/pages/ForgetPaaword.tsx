@@ -23,7 +23,7 @@ const ForgetPassword: React.FC = () => {
       setLoading(true);
       let { data } = await axios.post(`https://transguideapi.runasp.net/api/Auth/send-reset-code`, values)
       console.log(data);
-      toast.success(data.message);
+      toast.success("تم ارسال الكود");
       //setLoading(false);
       navigator("/verifycode");
       // localStorage.setItem('userToken' ,data.token);
@@ -32,7 +32,7 @@ const ForgetPassword: React.FC = () => {
       // setUserId(data.userId);
 
     } catch (error: any) {
-      toast.error(error.response?.data?.message);
+      toast.error("حدث خطا");
       setLoading(false);
     }
   }

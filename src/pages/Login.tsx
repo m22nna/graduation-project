@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import  axios  from "axios";
 import {toast} from "react-hot-toast";
 import { UserContext } from "@/context/UserContext";
-import LoginWithGoogle from "@/components/LoginWithGoogle";
+// import LoginWithGoogle from "@/components/LoginWithGoogle";
 import logo from '../assets/logo-nobg.png'
 interface LoginFormValues {
   email: string;
   password: string;  
-  // currentLatitude: number,
-  // currentLongitude: number
+  
   
 }
 
@@ -26,7 +25,7 @@ const Login: React.FC = () => {
     setLoading(true);
    let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/signin`, values)
     //console.log(data);
-    toast.success("success");
+    toast.success("تم تسجيل الدخول بنجاح");
     //setLoading(false);
     navigator("/");
     localStorage.setItem('userToken' ,data.token);
@@ -38,7 +37,7 @@ const Login: React.FC = () => {
   
    }catch(error:any){
     console.error("Login error:", error.response);
-    toast.error(error.response?.data?.message || error.response?.data?.title || "Invalid email or password");
+    toast.error(error.response?.data?.message || error.response?.data?.title || "خطا فى الايميل او كلمة المرور");
     setLoading(false);
    }
   }
@@ -58,10 +57,8 @@ const Login: React.FC = () => {
   const formik = useFormik<LoginFormValues>({
     initialValues: {
       email: "",
-      password: "",      
-      // currentLatitude: 0,
-      // currentLongitude: 0,
-      
+      password: "",  
+            
     },
     validationSchema,
     onSubmit: login,
@@ -72,7 +69,7 @@ const Login: React.FC = () => {
       
 
       <form onSubmit={formik.handleSubmit} className="text-[var(--main-internal-color)] body-font py-20">
-        <div className="container px-5 py-24 mx-auto bg-white rounded-3xl">
+        <div className="container px-5 py-24 mx-auto bg-white rounded-3xl ">
           <img src={logo} className="w-32 bg-[var(--main-internal-color)] rounded-full mx-auto mb-3 p-1" />
           <span className="text-[var(--main-internal-color)] text-4xl mb-16">تسجيل الدخول</span>
           <div className="bg-white rounded-3xl max-w-4xl mx-auto p-6 mt-4">
@@ -133,20 +130,20 @@ const Login: React.FC = () => {
                 </button> :
                   <button 
                   type="submit"
-                  className="mx-auto block bg-[var(--main-internal-color)] text-white text-lg  py-3 px-10 rounded-3xl hover:bg-[var(--main-hover-color)] transition"
+                  className="mx-auto my-5 block bg-[var(--main-internal-color)] text-white text-lg  py-3 px-10 rounded-3xl hover:bg-[var(--main-hover-color)] transition"
                 >
                   Submit
                 </button>
                 } 
                 
-                <div className="container ">
+                {/* <div className="container ">
                   <hr className="mt-3 w-2/5 mx-auto"/>
                   <LoginWithGoogle/>
                   <hr className="mb-3  w-2/5 mx-auto"/>
-                </div>
+                </div> */}
 
 
-                <button type="button" className="text-lg font-bold text-[var(--main-internal-color hover:text-[var(--main-hover-color)]" onClick={()=> navigator("/register")}>
+                <button type="button" className="text-lg font-bold text-[var(--main-internal-color my-5 hover:text-[var(--main-hover-color)]" onClick={()=> navigator("/register")}>
                   I don't have an account
                 </button>
               </div>

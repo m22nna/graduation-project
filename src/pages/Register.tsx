@@ -24,14 +24,16 @@ const Register: React.FC = () => {
    
    try{
     setLoading(true);
-   let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/signup`, values)
-    //console.log(data);
-    toast.success(data.message);
+  //  let {data} = await axios.post(`https://transguideapi.runasp.net/api/Auth/signup`, values)
+  //   //console.log(data);
+   await axios.post(`https://transguideapi.runasp.net/api/Auth/signup`, values)
+  //   //console.log(data);
+    toast.success("تم انشاء حساب بنجاح");
     //setLoading(false);
     navigator("/login");
   
    }catch(error:any){
-    toast.error(error.response?.data?.message);
+    toast.error(error.response?.data?.message || "خطا فى البيانات المدخلة");
     setLoading(false);
    }
   }
