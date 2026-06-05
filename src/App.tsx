@@ -36,6 +36,7 @@ import Roles from "./pages/Roles";
 import Stations from "./pages/Stations";
 import StationDetails from "./pages/StationDetails";
 import UserDetails from "./pages/UserDetails";
+import Users from "./pages/Users";
 import Routes from "./pages/Routes";
 import RouteDetails from "./pages/RouteDetails";
 import GetUserData from "./pages/GetUserData";
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard/route/:id",
         element: <RouteDetails />,
+      },
+      {
+        path: "dashboard/users",
+        element: <Users />,
       },
       {
         path: "dashboard/user/:id",
