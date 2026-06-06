@@ -11,10 +11,10 @@ export function useVoiceSearch() {
   } = useMutation({
     mutationFn: (audioBlob: Blob) => sendVoiceSearch(audioBlob),
     onSuccess: () => {
-      toast.success("تم إرسال الصوت بنجاح");
+      toast.success("تم معالجة الصوت بنجاح");
     },
     onError: (err: any) => {
-      toast.error(err.message || "فشل في إرسال الصوت");
+      toast.error(err.message || "فشل في معالجة الصوت");
     },
   });
 
