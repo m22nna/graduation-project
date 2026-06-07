@@ -1,4 +1,4 @@
-import { Mic, Camera, MapPin, Search, Navigation, Info, CheckCircle } from "lucide-react";
+import { Mic, Camera, MapPin, Search, Navigation, Info, CheckCircle, LayoutGrid, FileClock, ShieldAlert, HeartHandshake, UserCog, HelpCircle } from "lucide-react";
 import HowToUseHero from "@/components/how-to-use/HowToUseHero";
 import VideoGuide from "@/components/how-to-use/VideoGuide";
 import GuideCard from "@/components/how-to-use/GuideCard";
@@ -12,6 +12,12 @@ export default function HowToUse() {
 
         {/* Video Placeholder Container */}
         <VideoGuide />
+
+        {/* Core Features Section Heading */}
+        <div className="mb-8 mt-12 border-r-4 border-white pr-4">
+          <h2 className="text-2xl md:text-3xl font-black text-white">الخصائص الأساسية للبحث والتوجيه</h2>
+          <p className="text-sm text-emerald-100 mt-1">تفاصيل الأدوات المتقدمة لتسهيل العثور على رحلاتك</p>
+        </div>
 
         {/* Core Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
@@ -107,6 +113,109 @@ export default function HowToUse() {
             description={
               <p>
                 سجل دخولك لحفظ عمليات البحث والوصول لقائمة السجلات السابقة (History). بالنسبة للمسؤولين والمدراء، توفر لوحة التحكم (Dashboard) أدوات إحصائية وإدارة كاملة للمحطات، الأدوار، والمسارات.
+              </p>
+            }
+          />
+
+        </div>
+
+        {/* All Pages Details Section Heading */}
+        <div className="mb-8 mt-16 border-r-4 border-white pr-4">
+          <h2 className="text-2xl md:text-3xl font-black text-white">دليل تفصيلي لصفحات التطبيق</h2>
+          <p className="text-sm text-emerald-100 mt-1">شرح مفصل لوظائف ومحتويات كل صفحة في القائمة الرئيسية</p>
+        </div>
+
+        {/* Pages Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+          
+          {/* Page 1: Overview */}
+          <GuideCard
+            icon={LayoutGrid}
+            stepText="صفحة نظرة عامة (Overview)"
+            iconBgClass="bg-slate-100"
+            iconColorClass="text-slate-700"
+            description={
+              <p>
+                هي الصفحة الرئيسية التعارفية للتطبيق. تحتوي على قسم الإحصائيات العامة للمسارات النشطة، وقسم مخصص للأسئلة الشائعة (FAQ) لمساعدتك في فهم خدماتنا بشكل سريع، بالإضافة إلى روابط التنقل السريع.
+              </p>
+            }
+          />
+
+          {/* Page 2: Home Search */}
+          <GuideCard
+            icon={Search}
+            stepText="صفحة البحث والتوجيه (Home)"
+            iconBgClass="bg-green-100"
+            iconColorClass="text-green-700"
+            description={
+              <p>
+                المحرك التشغيلي الرئيسي للتطبيق. هنا يمكنك إدخال بيانات رحلتك والبحث عن المسارات المتاحة، والتفاعل المباشر مع واجهات الإدخال الصوتي، وكاميرا فك شفرة لغة الإشارة الذكية، وعرض النتائج والمسارات بالتفصيل.
+              </p>
+            }
+          />
+
+          {/* Page 3: Our Routes */}
+          <GuideCard
+            icon={HelpCircle}
+            stepText="صفحة مساراتنا (Our Routes)"
+            iconBgClass="bg-blue-100"
+            iconColorClass="text-blue-700"
+            description={
+              <p>
+                تستعرض هذه الصفحة جميع خطوط السير والمسارات المسجلة في التطبيق. يمكنك البحث عن مسار معين لاستعراض المحطات التي يمر بها، زمن الرحلة، وتفاصيل الأوقات والأسعار المخصصة لكل وجهة.
+              </p>
+            }
+          />
+
+          {/* Page 4: History */}
+          <GuideCard
+            icon={FileClock}
+            stepText="صفحة السجل (History)"
+            iconBgClass="bg-yellow-100"
+            iconColorClass="text-yellow-700"
+            description={
+              <p>
+                خاصة بالمستخدمين المسجلين فقط. تقوم بحفظ وتوثيق عمليات البحث الأخيرة التي قمت بها لتتمكن من الرجوع إليها سريعاً في أي وقت بنقرة واحدة، كما تتيح لك إمكانية تفريغ وحذف سجل البحث.
+              </p>
+            }
+          />
+
+          {/* Page 5: Profile / Info */}
+          <GuideCard
+            icon={UserCog}
+            stepText="صفحة المعلومات العامة (General Info)"
+            iconBgClass="bg-indigo-100"
+            iconColorClass="text-indigo-700"
+            description={
+              <p>
+                تمكنك من إدارة وتعديل حسابك الشخصي؛ حيث يمكنك مراجعة وتعديل بريدك الإلكتروني، اسم المستخدم، وتحديث كلمة المرور الخاصة بك بشكل آمن وسهل.
+              </p>
+            }
+          />
+
+          {/* Page 6: Dashboard */}
+          <GuideCard
+            icon={ShieldAlert}
+            stepText="لوحة تحكم المسؤولين (Dashboard)"
+            iconBgClass="bg-rose-100"
+            iconColorClass="text-rose-700"
+            description={
+              <p>
+                لوحة إدارية مخصصة لأعضاء الإدارة والمسؤولين والمدراء فقط. تتيح لهم المراقبة والإحصاء العام، وتوفر خيارات متقدمة لإدارة وتعديل وإضافة المحطات، المستخدمين، الأدوار، ومسارات المواصلات مباشرة.
+              </p>
+            }
+          />
+
+          {/* Page 7: Contact Us */}
+          <GuideCard
+            icon={HeartHandshake}
+            stepText="صفحة تواصل معنا (Contact Us)"
+            iconBgClass="bg-pink-100"
+            iconColorClass="text-pink-700"
+            className="md:col-span-2"
+            description={
+              <p>
+                تتيح لك التواصل المباشر مع فريق الدعم الفني وإدارة التطبيق. يمكنك إرسال تعليقاتك، مقترحاتك، أو الإبلاغ عن أي مشكلة فنية تواجهها أثناء الاستخدام لضمان حصولك على أفضل تجربة.
               </p>
             }
           />
