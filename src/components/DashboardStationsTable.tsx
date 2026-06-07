@@ -31,7 +31,7 @@ export const DashboardStationsTable: React.FC<DashboardStationsTableProps> = ({ 
   }
 
   return (
-    <div className="mt-12 border-t border-white pt-10">
+    <div className="mt-12 border-t border-white pt-10 overflow-x-auto">
       <div className="title w-fit mx-auto mb-10">
         <h2 className="text-2xl font-semibold mb-2 text-white">
           قائمة المحطات
