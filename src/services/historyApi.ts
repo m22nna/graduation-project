@@ -36,11 +36,13 @@ export async function deleteTrip(tripId: string, userId: string, token: string) 
  * [MODIFIED] Added function to clear all search history
  */
 export async function deleteAllHistory(userId: string, token: string) {
-  // [IMPORTANT] Reverted to the EXACT misspelled endpoint and structure confirmed via Swagger: DeleteHisrory{userId}
-  const response = await axios.delete(`${BASE_URL}/DeleteHisrory${userId}`, { // [MODIFIED] Final fix using server's specific naming convention
+  
+  const response = await axios.delete(`${BASE_URL}/DeleteHisrory${userId}`, { 
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
   return response.data;
 }
+
+
