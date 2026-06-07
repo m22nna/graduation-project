@@ -8,6 +8,9 @@ export async function sendVoiceSearch(audioBlob: Blob): Promise<any> {
   const trueWavBlob = await convertToWav(audioBlob);
   
   formData.append("file", trueWavBlob, "recording.wav");
+  formData.append("File", trueWavBlob, "recording.wav");
+  formData.append("voice", trueWavBlob, "recording.wav");
+  formData.append("Voice", trueWavBlob, "recording.wav");
 
   const response = await fetch("https://transguideapi.runasp.net/api/Voice/SendVoice", {
     method: "POST",

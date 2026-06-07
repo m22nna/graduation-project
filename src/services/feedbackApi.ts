@@ -17,7 +17,7 @@ export interface FeedbackPayload {
 export async function submitFeedback(payload: FeedbackPayload) {
     console.log("Submitting Feedback Payload:", payload);
     const response = await axios.post(
-        "http://transguideapi.runasp.net/api/UserFeedback",
+        "https://transguideapi.runasp.net/api/UserFeedbacks/SubmitFeedack",
         payload
     );
     console.log("Feedback API Response:", response.data);
