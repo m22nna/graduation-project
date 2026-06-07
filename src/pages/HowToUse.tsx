@@ -223,19 +223,19 @@ export default function HowToUse() {
         </div>
 
         {/* Footer Support/Contact Tip */}
-        <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-6 text-white text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-white border border-emerald-100 rounded-3xl p-6 text-emerald-800 text-center flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl shadow-emerald-900/5">
           <div className="flex items-center gap-3 text-right">
-            <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-emerald-400">
+            <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
               <CheckCircle size={20} />
             </div>
             <div>
-              <h4 className="font-bold text-sm">لديك استفسار إضافي؟</h4>
-              <p className="text-xs text-slate-300">فريقنا متواجد دائماً للإجابة على جميع تساؤلاتك.</p>
+              <h4 className="font-bold text-sm text-emerald-900">لديك استفسار إضافي؟</h4>
+              <p className="text-xs text-emerald-600">فريقنا متواجد دائماً للإجابة على جميع تساؤلاتك.</p>
             </div>
           </div>
           <a
             href="/contact"
-            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold text-xs md:text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-900/40"
+            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold text-xs md:text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-md shadow-emerald-600/20"
           >
             تواصل معنا
           </a>
