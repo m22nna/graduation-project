@@ -110,9 +110,7 @@ const NavBar: React.FC = () => {
 
                     <ul className="hidden md:flex gap-4 lg:gap-8 text-white font-semibold text-base lg:text-lg">
                         <li>
-
                             <NavLink to="/home" className={({ isActive }) => linkClasses(isActive)}>
-
                                 Home
                             </NavLink>
                         </li>
@@ -122,10 +120,13 @@ const NavBar: React.FC = () => {
                             </NavLink>
                         </li>
                         <li>
-
                             <NavLink to="/" className={({ isActive }) => linkClasses(isActive)}>
-
                                 Overview
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/howtouse" className={({ isActive }) => linkClasses(isActive)}>
+                                How to Use
                             </NavLink>
                         </li>
                         <li>
@@ -133,7 +134,6 @@ const NavBar: React.FC = () => {
                                 Contact Us
                             </NavLink>
                         </li>                    
-                        
                     </ul> 
                     
 
@@ -209,15 +209,11 @@ const NavBar: React.FC = () => {
                    
                     <li>
                         <NavLink
-                            to="/"
+                            to="/home"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-
-                            Overview
-
-                             {/* Overview */}
-
+                            Home
                         </NavLink>
                     </li>
 
@@ -233,13 +229,21 @@ const NavBar: React.FC = () => {
 
                     <li>
                         <NavLink
-                            to="/home"
+                            to="/"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
+                            Overview
+                        </NavLink>
+                    </li>
 
-                            Home
-
+                    <li>
+                        <NavLink
+                            to="/howtouse"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            How to Use
                         </NavLink>
                     </li>
 
@@ -258,15 +262,11 @@ const NavBar: React.FC = () => {
                    
                     <li>
                         <NavLink
-                            to="/"
+                            to="/home"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
-
-                            Overview
-
-                             {/* Overview */}
-
+                            Home
                         </NavLink>
                     </li>
 
@@ -282,13 +282,21 @@ const NavBar: React.FC = () => {
 
                     <li>
                         <NavLink
-                            to="/home"
+                            to="/"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
                         >
+                            Overview
+                        </NavLink>
+                    </li>
 
-                            Home
-
+                    <li>
+                        <NavLink
+                            to="/howtouse"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            How to Use
                         </NavLink>
                     </li>
 
