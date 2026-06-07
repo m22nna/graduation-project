@@ -19,6 +19,7 @@ import VerifyCode from './pages/VerifyCode';
 import ResetPassword from './pages/ResetPassword';
 import History from './pages/History';
 import Dashboard from "./pages/Dashboard";
+import HowToUse from "./pages/HowToUse";
 
 import UserContextProvider from "./context/UserContext";
 
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <HomePage />,
+      },
+      {
+        path: "howtouse",
+        element: <HowToUse />,
       },
       {
         path: "routesqa",

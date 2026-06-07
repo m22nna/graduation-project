@@ -117,6 +117,11 @@ const NavBar: React.FC = () => {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink to="/howtouse" className={({ isActive }) => linkClasses(isActive)}>
+                                How to Use
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to="/routesqa" className={({ isActive }) => linkClasses(isActive)}>
                                 Our Routes
                             </NavLink>
@@ -223,6 +228,16 @@ const NavBar: React.FC = () => {
 
                     <li>
                         <NavLink
+                            to="/howtouse"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            How to Use
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
                             to="/routesqa"
                             onClick={() => setOpen(false)}
                             className={({ isActive }) => linkClasses(isActive)}
@@ -267,6 +282,16 @@ const NavBar: React.FC = () => {
 
                              {/* Overview */}
 
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/howtouse"
+                            onClick={() => setOpen(false)}
+                            className={({ isActive }) => linkClasses(isActive)}
+                        >
+                            How to Use
                         </NavLink>
                     </li>
 
