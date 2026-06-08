@@ -29,7 +29,7 @@ export async function createStation(input: CreateStationInput, token: string) {
  * Update an existing station
  */
 export async function updateStation(station: Station, token: string) {
-  const response = await axios.post(`${BASE_URL}/UpdateStation`, station, {
+  const response = await axios.put(`${BASE_URL}/UpdateStation`, station, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

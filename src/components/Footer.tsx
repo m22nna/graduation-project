@@ -8,8 +8,8 @@ function Footer() {
                 </h2> */}
                 <img src={logo} className="w-32" />
 
-                <p className="text-sm text-gray-500 text-center md:text-left max-w-md leading-relaxed">
-                    Your smart way to move around the city{" "}
+                <p className="text-xl text-[var(--main-internal-color)] text-center md:text-left max-w-md leading-relaxed">
+                طريقك أسهل معانا{" "}
                     <span className="text-orange-400">🚍</span>
                 </p>
 
@@ -24,7 +24,7 @@ function Footer() {
                         href="#"
                         className="text-green-400 hover:text-green-400 transition-colors duration-200"
                     >
-                        About
+                        contact Us
                     </a>
                 </div>
             </div>

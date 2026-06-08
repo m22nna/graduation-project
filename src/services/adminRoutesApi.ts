@@ -63,7 +63,7 @@ export async function createRoute(input: CreateRouteInput, token: string) {
  * Update an existing route
  */
 export async function updateRoute(route: Route, token: string) {
-  const response = await axios.post(`${BASE_URL}/UpdateRoute`, route, {
+  const response = await axios.put(`${BASE_URL}/UpdateRoute`, route, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

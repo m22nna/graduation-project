@@ -58,7 +58,7 @@ const VoiceRecorder = ({ onVoiceSuccess }: VoiceRecorderProps) => {
     <div className="w-full flex flex-col items-center gap-3 p-2 border-b border-gray-100 bg-gray-50/50 rounded-t-2xl">
       <div className="flex items-center gap-2">
         <span className="text-sm font-bold text-green-700 tracking-wide uppercase">
-          Search by Voice
+          Search by Voice & Camera
         </span>
       </div>
 
