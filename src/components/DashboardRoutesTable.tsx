@@ -103,7 +103,7 @@ export const DashboardRoutesTable: React.FC<DashboardRoutesTableProps> = ({
                   </td>
 
                   <td className="p-4 font-semibold">
-                    {route.routeStatusId === 1 ? (
+                    {/* {route.routeStatusId === 1 ? (
                       <span className="text-green-600 bg-green-100 px-2.5 py-1 rounded-full text-sm">
                         نشط
                       </span>
@@ -111,7 +111,10 @@ export const DashboardRoutesTable: React.FC<DashboardRoutesTableProps> = ({
                       <span className="text-red-600 bg-red-100 px-2.5 py-1 rounded-full text-sm">
                         متوقف
                       </span>
-                    )}
+                    )} */}
+                    <span className="px-2.5 py-1 rounded-full text-sm">
+  {route.status}
+</span>
                   </td>
                 </tr>
               );
